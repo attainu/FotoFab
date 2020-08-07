@@ -1,0 +1,180 @@
+.navbar {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  color: black;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.459);
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  .brand-name {
+    margin-right: 20px;
+  }
+}
+
+.navbar-links {
+  height: 100%;
+
+  ul {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      font-weight: 600;
+      width: 100%;
+
+      .button {
+        border: 1.5px solid rgba(0, 0, 0, 0.315);
+        color: rgba(0, 0, 0, 0.452);
+        padding: 0.3rem;
+        margin: 20px 20px;
+        font-size: 18px;
+        width: 160px;
+        border-radius: 5px;
+        background-color: #fff;
+        outline: none;
+        cursor: pointer;
+
+        &:hover {
+          border: 2px solid rgba(0, 0, 0, 0.452);
+          color: #000000;
+        }
+      }
+    }
+  }
+}
+
+//-------active state-----------
+.main-nav {
+  display: block;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.452);
+  padding: 0.2rem;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 20px;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.main-nav-active {
+  color: black;
+}
+
+//-------------------------------------
+
+.toggle-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  transform: translate(-5%, -50%);
+
+  .bar {
+    height: 3px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.637);
+    border-radius: 10px;
+  }
+
+  &:hover {
+    .bar {
+      background-color: black;
+    }
+  }
+}
+
+.login-button {
+  height: 40px;
+  font-size: 20px;
+  width: 120px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.877);
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    animation-name: background-color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards; // the button to stay highlighted.
+  }
+}
+
+@keyframes background-color {
+  100% {
+    background-color: #49767e;
+  }
+}
+
+//---------MEDIA QUERY----------------
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+  }
+
+  .primary-components {
+    display: flex;
+    align-items: center;
+  }
+
+  .toggle-button {
+    display: flex;
+  }
+
+  .navbar-links {
+    width: 100%;
+    // background-color: rgba(5, 143, 127, 0.205);
+    clip-path: circle(100px at 90% -10%);
+    -webkit-clip-path: circle(100px at 90% -10%);
+    transition: all 1s ease-out;
+  }
+
+  .navbar-links ul {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-links ul li {
+    margin-top: 20px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-links.active {
+    display: flex;
+    clip-path: circle(800px at 90% -10%);
+    -webkit-clip-path: circle(800px at 90% -10%);
+  }
+
+  .navbar-links.active ul {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
