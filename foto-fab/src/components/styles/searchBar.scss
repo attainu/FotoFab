@@ -1,0 +1,88 @@
+.search-bar-container {
+  height: 450px;
+  width: 100vw;
+  background-image: url("https://images.unsplash.com/photo-1588058365815-c96ac30ee30f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-foto-fab {
+  h1 {
+    font-size: 30px;
+    color: #fff;
+  }
+  p {
+    color: #fff;
+    font-weight: 500;
+  }
+  p:last-child {
+    margin-bottom: 40px;
+  }
+}
+.search-bar-area {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 0;
+
+  .search-form {
+    display: flex;
+    input {
+      width: 80vw;
+      height: 50px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      border-radius: 3px 0 0 3px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px;
+      border: none;
+      outline: none;
+      background-color: white;
+      border-radius: 0 3px 3px 0;
+      height: 50px;
+
+      i {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.603);
+      }
+
+      &:focus {
+        i {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.picture-info {
+  p {
+    color: rgba(224, 224, 224, 0.76);
+  }
+  p strong {
+    color: white;
+    font-weight: 500;
+  }
+}
+
+/*TODO: background-image: url("IMAGE OF THE DAY"); */
+
+@media (max-width: 800px) {
+  .search-bar-container {
+    height: 100px;
+  }
+  .about-foto-fab {
+    display: none;
+  }
+  .picture-info {
+    display: none;
+  }
+}
