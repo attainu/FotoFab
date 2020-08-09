@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./styles/searchBar.scss";
 import "font-awesome/css/font-awesome.min.css";
 import { withRouter } from "react-router-dom";
+import SearchForm from "./SearchForm";
 
 class SearchBar extends Component {
   state = {
@@ -24,16 +25,10 @@ class SearchBar extends Component {
             <p>The internet's source of freely-usable images.</p>
             <p>Powered by creator everywhere</p>
           </div>
-          <form className="search-form" onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="Search free high-resolution photos"
-              onChange={this.handleChange}
-            />
-            <button type="submit">
-              <i className="fa fa-search"></i>
-            </button>
-          </form>
+          <SearchForm
+            onSubmit={this.handleSubmit}
+            onChange={this.handleChange}
+          />
         </div>
 
         <div className="picture-info">

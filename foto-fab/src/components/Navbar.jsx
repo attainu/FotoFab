@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./styles/navbar.scss";
-
 import ViewProfile from "./ViewProfile";
-
+import "./styles/searchBar.scss";
 class Navbar extends Component {
   state = {
     isToggled: false,
@@ -24,7 +23,11 @@ class Navbar extends Component {
       <nav className="navbar">
         <div className="primary-components">
           <div className="brand-title">
-            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link
+              to="/"
+              className="brand-name"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               Brand Name
             </Link>
           </div>
