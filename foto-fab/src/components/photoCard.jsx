@@ -1,16 +1,36 @@
 import React, { Component } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import { withRouter } from "react-router-dom";
+import axios from "axios";
+
 class PhotoCard extends Component {
   handleProfile = () => {
     this.props.history.push(`/public/${this.props.photo.user.username}`);
   };
 
+  handleDownload = () => {
+    console.log("download");
+    console.log(this.props.photo.links.download);
+    axios({
+      url: this.props.photo.links.download,
+      method: "GET",
+      responseType: "blob",
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `${this.props.photo.id}.jpg`);
+      document.body.appendChild(link);
+      link.click();
+    });
+  };
+
   render() {
     const { photo } = this.props;
+    console.log(photo);
     return (
       <div className="photo-card">
-        <img src={`${photo.urls.small}`} alt="" />
+        <img src={`${photo.urls.regular}`} alt="" />
         <div className="overlay">
           <div className="like-add">
             <button>
@@ -28,7 +48,7 @@ class PhotoCard extends Component {
               <p>{photo.user.name}</p>
             </div>
 
-            <button>
+            <button onClick={this.handleDownload}>
               <i className="fa fa-arrow-down"></i>
             </button>
           </div>

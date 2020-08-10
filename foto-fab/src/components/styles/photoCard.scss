@@ -1,9 +1,10 @@
 .photo-container {
     position: relative;
-    width: 90vw;
+    box-sizing: border-box;
+    width: 100%;
     height: auto;
-    margin: auto;
-    padding: 45px 0;
+    margin: 0;
+    padding: 45px 10px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 10px;
@@ -45,6 +46,7 @@
                     border: none;
                     outline: none;
                     border-radius: 3px;
+                    cursor: pointer;
                     i {
                         color: rgba(0, 0, 0, 0.424);
                     }
@@ -99,8 +101,9 @@
         &:first-child {
             grid-column-start: span 2;
         }
-        &:nth-child(4n + 5) {
-            grid-column-start: span 2;
+        &:last-child {
+            grid-column: 2/3;
+            grid-row: 2/4;
         }
         &:nth-child(6n + 9) {
             grid-column-start: span 1;
@@ -122,6 +125,7 @@
     .user-info {
         margin-left: 20px;
         display: flex;
+        cursor: pointer;
 
         .profile-image {
             height: 40px;
@@ -129,6 +133,7 @@
             border-radius: 50%;
             overflow: hidden;
             margin-right: 10px;
+
             img {
                 height: 100%;
                 width: 100%;
@@ -144,6 +149,7 @@
         border: none;
         outline: none;
         border-radius: 3px;
+        cursor: pointer;
         i {
             color: rgba(0, 0, 0, 0.424);
         }

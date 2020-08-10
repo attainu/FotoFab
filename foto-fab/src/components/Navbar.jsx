@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./styles/navbar.scss";
-
 import ViewProfile from "./ViewProfile";
-
 class Navbar extends Component {
   state = {
     isToggled: false,
-    isLoggedIn: true,
+    isLoggedIn: false,
   };
 
   handleToggle = () => {
@@ -21,10 +19,14 @@ class Navbar extends Component {
     if (isToggled) activeClass = "active";
 
     return (
-      <nav className="navbar">
+      <nav className="navbar" id="navbar">
         <div className="primary-components">
           <div className="brand-title">
-            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <Link
+              to="/"
+              className="brand-name"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               Brand Name
             </Link>
           </div>
@@ -40,10 +42,19 @@ class Navbar extends Component {
             <li>
               <NavLink
                 className="main-nav"
-                activeClassName="main-nav-active"
+                activeClassName="main-nav-active active"
                 to="/"
               >
                 Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="main-nav"
+                activeClassName="main-nav-active active"
+                to="/about"
+              >
+                About
               </NavLink>
             </li>
             <li>
@@ -58,9 +69,9 @@ class Navbar extends Component {
                 <NavLink
                   to="/login"
                   className="main-nav"
-                  activeClassName="main-nav-active"
+                  activeClassName="main-nav-active active"
                 >
-                  Login
+                  <button className="login-button">Login</button>
                 </NavLink>
               )}
             </li>
