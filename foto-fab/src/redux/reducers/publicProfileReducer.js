@@ -3,10 +3,13 @@ import {
   TOGGLE_PUBLIC_PROFILE_FETCHING_STATE,
   PUBLIC_PHOTO,
   TOGGLE_PUBLIC_PHOTO_FETCHING_STATE,
+<<<<<<< HEAD
   PUBLIC_USERS_LIKED_PHOTOS,
   TOGGLE_PUBLIC_USERS_LIKED_PHOTO_FETCHING_STATE,
   PUBLIC_USER_COLLECTION,
   TOGGLE_PUBLIC_USER_COLLECTION_FETCHING_STATE,
+=======
+>>>>>>> 56e6770b5f519ad58d2f74ba61b57c4479f58dec
 } from "../actionType";
 
 const initialState = {
@@ -14,10 +17,13 @@ const initialState = {
   isUserLoading: false,
   photos: null,
   isPhotosLoading: false,
+<<<<<<< HEAD
   likedPhotos: null,
   isLikedPhotoLoading: false,
   collections: null,
   isCollectionLoading: false,
+=======
+>>>>>>> 56e6770b5f519ad58d2f74ba61b57c4479f58dec
 };
 
 export const publicUserReducer = (state = initialState, action) => {
@@ -35,6 +41,7 @@ export const publicUserReducer = (state = initialState, action) => {
     case TOGGLE_PUBLIC_PHOTO_FETCHING_STATE: {
       return { ...state, isPhotosLoading: !state.isPhotosLoading };
     }
+<<<<<<< HEAD
     case PUBLIC_USERS_LIKED_PHOTOS: {
       return { ...state, likedPhotos: payload };
     }
@@ -47,6 +54,8 @@ export const publicUserReducer = (state = initialState, action) => {
     case TOGGLE_PUBLIC_USER_COLLECTION_FETCHING_STATE: {
       return { ...state, isCollectionLoading: !state.isCollectionLoading };
     }
+=======
+>>>>>>> 56e6770b5f519ad58d2f74ba61b57c4479f58dec
     default: {
       return state;
     }
