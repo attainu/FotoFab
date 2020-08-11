@@ -19,7 +19,7 @@ class Navbar extends Component {
     if (isToggled) activeClass = "active";
 
     return (
-      <nav className="navbar" id="navbar">
+      <nav className="navbar">
         <div className="primary-components">
           <div className="brand-title">
             <Link
@@ -42,7 +42,7 @@ class Navbar extends Component {
             <li>
               <NavLink
                 className="main-nav"
-                activeClassName="main-nav-active active"
+                activeClassName="main-nav-active"
                 to="/"
               >
                 Home
@@ -51,7 +51,7 @@ class Navbar extends Component {
             <li>
               <NavLink
                 className="main-nav"
-                activeClassName="main-nav-active active"
+                activeClassName="main-nav-active"
                 to="/about"
               >
                 About
@@ -69,7 +69,7 @@ class Navbar extends Component {
                 <NavLink
                   to="/login"
                   className="main-nav"
-                  activeClassName="main-nav-active active"
+                  activeClassName="main-nav-active"
                 >
                   <button className="login-button">Login</button>
                 </NavLink>

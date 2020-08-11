@@ -23,17 +23,14 @@
     font-size: 30px;
     color: #fff;
   }
-
   p {
     color: #fff;
     font-weight: 500;
   }
-
   p:last-child {
     margin-bottom: 40px;
   }
 }
-
 .search-bar-area {
   height: 100%;
   width: 85vw;
@@ -43,12 +40,10 @@
   margin: 20px 0;
   z-index: 3;
 }
-
 .search-form {
   display: flex;
   border: 1.5px solid rgba(0, 0, 0, 0.171);
   border-radius: 3px;
-
   input {
     width: 100%;
     height: 50px;
@@ -58,7 +53,6 @@
     border-radius: 3px 0 0 3px;
     font-size: 16px;
   }
-
   button {
     padding: 10px;
     border: none;
@@ -82,12 +76,9 @@
 
 .picture-info {
   z-index: 3;
-  margin-bottom: 20px;
-
   p {
     color: rgba(224, 224, 224, 0.76);
   }
-
   p strong {
     color: white;
     font-weight: 500;
@@ -101,15 +92,12 @@
   .search-bar-container {
     height: 100px;
   }
-
   .search-bar-container .black-layer {
     height: 100px;
   }
-
   .about-foto-fab {
     display: none;
   }
-
   .picture-info {
     display: none;
   }

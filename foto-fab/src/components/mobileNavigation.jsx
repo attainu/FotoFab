@@ -13,11 +13,11 @@ export class MobileNavigation extends Component {
   render() {
     const { isLoggedIn } = this.state;
     return (
-      <div className="mobile-navbar" id="mobile-nav">
+      <div className="mobile-navbar">
         <Link className="home" to="/">
           <i className="fa fa-home" aria-hidden="true"></i>
         </Link>
-        <div className="submit-photo" onClick={this.handleClick}>
+        <div onClick={this.handleClick}>
           <i className="fa fa-plus-square-o" aria-hidden="true"></i>
         </div>
         {!isLoggedIn ? (

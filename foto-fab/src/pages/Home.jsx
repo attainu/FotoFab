@@ -5,7 +5,6 @@ import { fetchImages } from "../redux/actions/fetchPhotosAction";
 import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
-import Loader from "./Loader";
 class Home extends Component {
   state = {
     page_no: 1,
@@ -68,7 +67,6 @@ class Home extends Component {
           </div>
         ) : (
           <Spinner />
-          // <Loader />
         )}
       </>
     );
