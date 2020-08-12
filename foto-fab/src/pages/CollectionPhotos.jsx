@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import Searchbar from "../components/Searchbar";
+import Navbar from "../components/Navbar";
+import MobileNavigation from "../components/MobileNavigation";
 import { connect } from "react-redux";
-import { searchImages, emptyImages } from "../redux/actions/searchPhotosAction";
+import { fetchCollectionPhotos } from "../redux/actions/collectionPhoto";
 import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
-class searchPage extends Component {
+import { emptyImages } from "../redux/actions/searchPhotosAction";
+
+class CollectionPage extends Component {
   state = {
     page_no: 1,
-    query: "",
   };
+
   handleScroll = () => {
     const windowHeight =
       "innerHeight" in window
@@ -34,56 +37,38 @@ class searchPage extends Component {
   };
 
   componentDidMount() {
-    console.log("fetching movie");
-    console.log(this.props.match.params.searchQuery);
     this.props.emptyImages();
-    this.props.searchImages(
-      this.state.page_no,
-      this.props.match.params.searchQuery
+    console.log(this.props.match.params.id);
+    this.props.fetchCollectionPhotos(
+      this.props.match.params.id,
+      this.state.page_no
     );
-
-    this.setState({ query: this.props.match.params.searchQuery });
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
-  componentDidUpdate = (prevProp, prevState) => {
-    const oldQuery = this.state.query;
-    const newSearchQuery = this.props.match.params.searchQuery;
-    console.log(this.props.match.params.searchQuery);
+  componentDidUpdate(prevProp, prevState) {
     if (prevState.page_no < this.state.page_no) {
       console.log(prevState.page_no);
-      console.log("loading more photos");
-      this.props.searchImages(
-        this.state.page_no,
-        this.props.match.params.searchQuery
+
+      this.props.fetchCollectionPhotos(
+        this.props.match.params.id,
+        this.state.page_no
       );
     } else {
       console.log("not updating");
     }
-    if (newSearchQuery !== oldQuery) {
-      this.props.emptyImages();
-      this.setState({ query: newSearchQuery });
-      console.log("searching new photos");
-      this.props.searchImages(
-        this.state.page_no,
-        this.props.match.params.searchQuery
-      );
-    } else {
-      console.log("not loading new photos");
-    }
-  };
+  }
+
   render() {
-    console.log(this.props.match.params.searchQuery);
-    const { searchPhotos } = this.props;
+    const { photos } = this.props;
     return (
       <>
-        <Searchbar />
-        {searchPhotos.length !== 0 ? (
+        {photos.length !== 0 ? (
           <div>
             <div className="photo-container">
-              {searchPhotos.map((image) => (
+              {photos.map((image) => (
                 <PhotoCard
                   photo={image}
                   key={`${Math.floor(Math.random() * 10 ** 100)}${new Date()}`}
@@ -93,17 +78,20 @@ class searchPage extends Component {
           </div>
         ) : (
           <Spinner />
+          // <Loader />
         )}
+        <MobileNavigation />
       </>
     );
   }
 }
+
 const mapStateToProps = (state) => {
-  console.log(state.searchPhotoState.photos);
   return {
-    searchPhotos: state.searchPhotoState.photos,
+    photos: state.collectionPhotos.collectionPhotos,
   };
 };
-export default connect(mapStateToProps, { searchImages, emptyImages })(
-  searchPage
+
+export default connect(mapStateToProps, { fetchCollectionPhotos, emptyImages })(
+  CollectionPage
 );

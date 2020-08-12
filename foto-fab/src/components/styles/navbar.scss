@@ -14,6 +14,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+
   .brand-name {
     margin-right: 20px;
   }
@@ -36,7 +37,7 @@
       .button {
         border: 1.5px solid rgba(0, 0, 0, 0.315);
         color: rgba(0, 0, 0, 0.452);
-        padding: 0.3rem;
+        padding: 0.5rem 0.3rem;
         margin: 20px 20px;
         font-size: 18px;
         width: 160px;
@@ -46,13 +47,14 @@
         cursor: pointer;
 
         &:hover {
-          border: 2px solid rgba(0, 0, 0, 0.452);
+          border: 1.5px solid rgba(0, 0, 0, 0.452);
           color: #000000;
         }
       }
     }
   }
 }
+
 //-------active state-----------
 .main-nav {
   display: block;
@@ -92,22 +94,38 @@
     background-color: rgba(0, 0, 0, 0.637);
     border-radius: 10px;
   }
+
   &:hover {
     .bar {
       background-color: black;
     }
   }
 }
+
 .login-button {
   height: 40px;
   font-size: 20px;
+  width: 120px;
   border: none;
   outline: none;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.877);
   color: #fff;
   cursor: pointer;
+
+  &:hover {
+    animation-name: background-color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards; // the button to stay highlighted.
+  }
 }
+
+@keyframes background-color {
+  100% {
+    background-color: #0000009d;
+  }
+}
+
 //---------MEDIA QUERY----------------
 @media (max-width: 800px) {
   .navbar {
@@ -115,13 +133,16 @@
     align-items: flex-start;
     text-align: center;
   }
+
   .primary-components {
     display: flex;
     align-items: center;
   }
+
   .toggle-button {
     display: flex;
   }
+
   .navbar-links {
     width: 100%;
     // background-color: rgba(5, 143, 127, 0.205);
@@ -129,6 +150,7 @@
     -webkit-clip-path: circle(100px at 90% -10%);
     transition: all 1s ease-out;
   }
+
   .navbar-links ul {
     display: none;
     width: 100%;

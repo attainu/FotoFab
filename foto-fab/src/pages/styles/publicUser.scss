@@ -1,12 +1,7 @@
 .profile-container {
   padding-top: 50px;
   width: 100%;
-  background-image: linear-gradient(
-    to top,
-    #dad4ec 0%,
-    #dad4ec 1%,
-    #f3e7e9 100%
-  );
+
   .all-bio {
     box-sizing: border-box;
     display: flex;
@@ -29,6 +24,7 @@
 
     .name-data {
       text-align: left;
+
       .name-and-follow-button {
         display: flex;
         flex-wrap: wrap;
@@ -39,6 +35,7 @@
           margin-right: 30px;
           margin-bottom: 0;
         }
+
         button {
           height: 35px;
           width: 120px;
@@ -51,6 +48,7 @@
           margin-bottom: 5px;
           cursor: pointer;
         }
+
         .follow {
           margin-right: 10px;
           background-color: rgb(14, 133, 212);
@@ -63,25 +61,31 @@
             background-color: rgb(11, 148, 240);
           }
         }
+
         .message {
           background-color: black;
+
           &:hover {
             background-color: rgba(0, 0, 0, 0.698);
           }
         }
       }
+
       .location-portfolio-bio {
         color: rgba(0, 0, 0, 0.637);
+
         .links {
           display: flex;
           flex-wrap: wrap;
         }
+
         a {
           text-decoration: none;
           color: rgba(0, 0, 0, 0.637);
           margin-bottom: 20px;
           word-break: break-all;
           margin-right: 30px;
+
           div {
             font-weight: 400;
             margin-top: 20px;
@@ -91,6 +95,7 @@
             color: black;
           }
         }
+
         p {
           color: black;
           font-weight: 500;
@@ -102,12 +107,14 @@
   .location-portfolio-bio {
     width: 70vw;
   }
+
   .photos-likes-collections {
     display: flex;
     flex-wrap: wrap;
     margin-top: 50px;
     box-sizing: border-box;
     padding: 0 40px;
+
     div {
       margin-right: 30px;
       color: rgba(0, 0, 0, 0.637);
@@ -145,23 +152,27 @@
       }
     }
   }
+
   .name-data {
     display: flex;
     flex-direction: column;
     align-items: center;
     word-wrap: break-word;
   }
+
   .name-and-follow-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100vw;
+
     h1 {
       font-size: 22px;
       margin-right: 0;
     }
   }
+
   //   .location-portfolio-bio {
   //     display: flex;
   //     flex-direction: column;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "font-awesome/css/font-awesome.min.css";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 
 class PhotoCard extends Component {
@@ -29,31 +29,33 @@ class PhotoCard extends Component {
     const { photo } = this.props;
     console.log(photo);
     return (
-      <div className="photo-card">
-        <img src={`${photo.urls.regular}`} alt="" />
-        <div className="overlay">
-          <div className="like-add">
-            <button>
-              <i className="fa fa-heart" aria-hidden="true"></i>
-            </button>
-            <button>
-              <i className="fa fa-plus"></i>
-            </button>
-          </div>
-          <div className="photographer-download">
-            <div className="user-info" onClick={this.handleProfile}>
-              <div className="profile-image">
-                <img src={`${photo.user.profile_image.medium}`} alt="" />
-              </div>
-              <p>{photo.user.name}</p>
+      <Link to={`/detailPage/${photo.id}`}>
+        <div className="photo-card">
+          <img src={`${photo.urls.regular}`} alt="" />
+          <div className="overlay">
+            <div className="like-add">
+              <button>
+                <i className="fa fa-heart" aria-hidden="true"></i>
+              </button>
+              <button>
+                <i className="fa fa-plus"></i>
+              </button>
             </div>
+            <div className="photographer-download">
+              <div className="user-info" onClick={this.handleProfile}>
+                <div className="profile-image">
+                  <img src={`${photo.user.profile_image.medium}`} alt="" />
+                </div>
+                <p>{photo.user.name}</p>
+              </div>
 
-            <button onClick={this.handleDownload}>
-              <i className="fa fa-arrow-down"></i>
-            </button>
+              <button onClick={this.handleDownload}>
+                <i className="fa fa-arrow-down"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }

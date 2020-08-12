@@ -28,12 +28,13 @@ export const fetchPublicUser = (username) => async (dispatch) => {
 };
 
 //fetch public user's photos
-export const fetchPublicUserPhotos = (username) => async (dispatch) => {
+export const fetchPublicUserPhotos = (username, page_no) => async (
+  dispatch
+) => {
   try {
-    dispatch({ type: PUBLIC_PHOTO, payload: null });
     dispatch({ type: TOGGLE_PUBLIC_PHOTO_FETCHING_STATE });
     const { data } = await axios.get(
-      `https://api.unsplash.com/users/${username}/photos?client_id=${key.ACCESS_KEY}`
+      `https://api.unsplash.com/users/${username}/photos?page=${page_no}&client_id=${key.ACCESS_KEY}`
     );
     console.log(data);
     dispatch({ type: PUBLIC_PHOTO, payload: data });
@@ -44,12 +45,13 @@ export const fetchPublicUserPhotos = (username) => async (dispatch) => {
   }
 };
 
-export const fetchPublicUserLikedPhotos = (username) => async (dispatch) => {
+export const fetchPublicUserLikedPhotos = (username, page_no) => async (
+  dispatch
+) => {
   try {
-    dispatch({ type: PUBLIC_USERS_LIKED_PHOTOS, payload: null });
     dispatch({ type: TOGGLE_PUBLIC_USERS_LIKED_PHOTO_FETCHING_STATE });
     const { data } = await axios.get(
-      `https://api.unsplash.com/users/${username}/likes?client_id=${key.ACCESS_KEY}`
+      `https://api.unsplash.com/users/${username}/likes?page=${page_no}&client_id=${key.ACCESS_KEY}`
     );
     console.log(data);
     dispatch({ type: PUBLIC_USERS_LIKED_PHOTOS, payload: data });
@@ -59,6 +61,7 @@ export const fetchPublicUserLikedPhotos = (username) => async (dispatch) => {
     dispatch({ type: TOGGLE_PUBLIC_USERS_LIKED_PHOTO_FETCHING_STATE });
   }
 };
+
 export const fetchPublicUserCollections = (username) => async (dispatch) => {
   try {
     dispatch({ type: PUBLIC_USER_COLLECTION, payload: null });

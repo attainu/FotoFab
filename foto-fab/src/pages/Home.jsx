@@ -5,6 +5,11 @@ import { fetchImages } from "../redux/actions/fetchPhotosAction";
 import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
+import Loader from "./Loader";
+import MobileNavigation from "../components/MobileNavigation";
+import Navbar from "../components/Navbar";
+import { emptyImages } from "../redux/actions/searchPhotosAction";
+
 class Home extends Component {
   state = {
     page_no: 1,
@@ -33,6 +38,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    this.props.emptyImages();
     this.props.fetchImages(this.state.page_no);
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -67,7 +73,9 @@ class Home extends Component {
           </div>
         ) : (
           <Spinner />
+          // <Loader />
         )}
+        <MobileNavigation />
       </>
     );
   }
@@ -79,4 +87,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchImages })(Home);
+export default connect(mapStateToProps, { fetchImages, emptyImages })(Home);

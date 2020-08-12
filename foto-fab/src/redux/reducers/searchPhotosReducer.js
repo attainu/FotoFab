@@ -1,7 +1,6 @@
 import {
-  SET_PHOTOS,
-  TOGGLE_PHOTO_FETCHING_STATE,
   SET_SEARCHED_PHOTO,
+  DEL_PHOTOS,
   TOGGLE_SEARCHED_PHOTO_FETCHING_STATE,
 } from "../actionType";
 
@@ -10,15 +9,18 @@ const initialState = {
   isPhotoLoading: false,
 };
 
-export const photoReducer = (state = initialState, action) => {
+export const searchPhotosReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case SET_PHOTOS: {
+    case SET_SEARCHED_PHOTO: {
       console.log(payload);
       return { ...state, photos: [...state.photos, ...payload] };
     }
-    case TOGGLE_PHOTO_FETCHING_STATE: {
+    case TOGGLE_SEARCHED_PHOTO_FETCHING_STATE: {
       return { ...state, isPhotoLoading: !state.isPhotoLoading };
+    }
+    case DEL_PHOTOS: {
+      return { ...state, photos: [] };
     }
     default: {
       return state;
@@ -26,4 +28,4 @@ export const photoReducer = (state = initialState, action) => {
   }
 };
 
-export default photoReducer;
+export default searchPhotosReducer;
