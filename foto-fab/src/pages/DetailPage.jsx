@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchDetailPhotos } from "../redux/actions/detailPhoto";
 import Spinner from "../components/Spinner";
-import MobileNavigation from "../components/MobileNavigation";
+import MobileNavigation from "../components/mobileNavigation";
 import axios from "axios";
 import Collection from "../components/Collection";
 import { withRouter } from "react-router-dom";

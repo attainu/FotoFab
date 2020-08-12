@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
-import MobileNavigation from "../components/MobileNavigation";
+import MobileNavigation from "../components/mobileNavigation";
 import { connect } from "react-redux";
 import { fetchCollectionPhotos } from "../redux/actions/collectionPhoto";
 import PhotoCard from "../components/photoCard";
@@ -67,6 +67,7 @@ class CollectionPage extends Component {
       <>
         {photos.length !== 0 ? (
           <div>
+            <h2>Collection Photos</h2>
             <div className="photo-container">
               {photos.map((image) => (
                 <PhotoCard

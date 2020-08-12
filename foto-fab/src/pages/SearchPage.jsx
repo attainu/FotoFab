@@ -5,6 +5,7 @@ import { searchImages, emptyImages } from "../redux/actions/searchPhotosAction";
 import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
+import MobileNavigation from "../components/mobileNavigation";
 class searchPage extends Component {
   state = {
     page_no: 1,
@@ -94,6 +95,7 @@ class searchPage extends Component {
         ) : (
           <Spinner />
         )}
+        <MobileNavigation />
       </>
     );
   }

@@ -29,33 +29,33 @@ class PhotoCard extends Component {
     const { photo } = this.props;
     console.log(photo);
     return (
-      <Link to={`/detailPage/${photo.id}`}>
-        <div className="photo-card">
+      <div className="photo-card">
+        <Link to={`/detailPage/${photo.id}`}>
           <img src={`${photo.urls.regular}`} alt="" />
-          <div className="overlay">
-            <div className="like-add">
-              <button>
-                <i className="fa fa-heart" aria-hidden="true"></i>
-              </button>
-              <button>
-                <i className="fa fa-plus"></i>
-              </button>
-            </div>
-            <div className="photographer-download">
-              <div className="user-info" onClick={this.handleProfile}>
-                <div className="profile-image">
-                  <img src={`${photo.user.profile_image.medium}`} alt="" />
-                </div>
-                <p>{photo.user.name}</p>
+        </Link>
+        <div className="overlay">
+          <div className="like-add">
+            <button>
+              <i className="fa fa-heart" aria-hidden="true"></i>
+            </button>
+            <button>
+              <i className="fa fa-plus"></i>
+            </button>
+          </div>
+          <div className="photographer-download">
+            <div className="user-info" onClick={this.handleProfile}>
+              <div className="profile-image">
+                <img src={`${photo.user.profile_image.medium}`} alt="" />
               </div>
-
-              <button onClick={this.handleDownload}>
-                <i className="fa fa-arrow-down"></i>
-              </button>
+              <p>{photo.user.name}</p>
             </div>
+
+            <button onClick={this.handleDownload}>
+              <i className="fa fa-arrow-down"></i>
+            </button>
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
 }

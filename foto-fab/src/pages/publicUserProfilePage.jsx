@@ -11,7 +11,7 @@ import "font-awesome/css/font-awesome.min.css";
 import PublicUserPhotos from "../components/publicUserPhotos";
 import PublicUserLikes from "../components/PublicUserLikes";
 import PublicUserCollection from "../components/PublicUserCollection";
-import MobileNavigation from "../components/MobileNavigation";
+import MobileNavigation from "../components/mobileNavigation";
 
 class PublicUserProfilePage extends Component {
   state = {

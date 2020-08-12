@@ -51,7 +51,7 @@ class LoginPhoto extends Component {
                               <div>
                                 <span>Join</span>
                               </div>
-                              <a class="circle" href="#signIn">
+                              <a className="circle" href="#signIn">
                                 <img src={arrow} alt="down arrow" />
                               </a>
                             </div>

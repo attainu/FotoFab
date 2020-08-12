@@ -12,6 +12,7 @@ export class MobileNavigation extends Component {
   };
   render() {
     const { isLoggedIn } = this.state;
+    console.log(isLoggedIn);
     return (
       <div className="mobile-navbar" id="mobile-nav">
         <Link className="home" to="/">

@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import Searchbar from "../components/Searchbar";
 import { connect } from "react-redux";
-import { fetchImages } from "../redux/actions/fetchPhotosAction";
+import { fetchImages, emptyImages } from "../redux/actions/fetchPhotosAction";
 import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
 import Loader from "./Loader";
-import MobileNavigation from "../components/MobileNavigation";
+import MobileNavigation from "../components/mobileNavigation";
 import Navbar from "../components/Navbar";
-import { emptyImages } from "../redux/actions/searchPhotosAction";
 
 class Home extends Component {
   state = {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MobileNavigation from "../components/MobileNavigation";
+import MobileNavigation from "../components/mobileNavigation";
 
 class AboutPage extends Component {
   render() {
