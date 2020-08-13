@@ -1,9 +1,4 @@
-import {
-  SET_PHOTOS,
-  TOGGLE_PHOTO_FETCHING_STATE,
-  SET_SEARCHED_PHOTO,
-  TOGGLE_SEARCHED_PHOTO_FETCHING_STATE,
-} from "../actionType";
+import { SET_PHOTOS, TOGGLE_PHOTO_FETCHING_STATE } from "../actionType";
 
 const initialState = {
   photos: [],

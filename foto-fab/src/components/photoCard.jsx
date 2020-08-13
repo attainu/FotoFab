@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import "font-awesome/css/font-awesome.min.css";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 class PhotoCard extends Component {
   handleProfile = () => {
     this.props.history.push(`/public/${this.props.photo.user.username}`);
+  };
+
+  handlePhoto = () => {
+    this.props.history.push(`/detailPage/${this.props.photo.id}`);
   };
 
   handleDownload = () => {
@@ -29,11 +33,11 @@ class PhotoCard extends Component {
     const { photo } = this.props;
     console.log(photo);
     return (
+      // <Link to={`/detailPage/${photo.id}`}>
       <div className="photo-card">
-        <Link to={`/detailPage/${photo.id}`}>
-          <img src={`${photo.urls.regular}`} alt="" />
-        </Link>
-        <div className="overlay">
+        <img src={`${photo.urls.regular}`} alt="" />
+
+        <div className="overlay" onClick={this.handlePhoto}>
           <div className="like-add">
             <button>
               <i className="fa fa-heart" aria-hidden="true"></i>
@@ -56,6 +60,7 @@ class PhotoCard extends Component {
           </div>
         </div>
       </div>
+      // </Link>
     );
   }
 }

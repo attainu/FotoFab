@@ -7,6 +7,7 @@ import {
   TOGGLE_PUBLIC_USERS_LIKED_PHOTO_FETCHING_STATE,
   PUBLIC_USER_COLLECTION,
   TOGGLE_PUBLIC_USER_COLLECTION_FETCHING_STATE,
+  DEL_PHOTOS,
 } from "../actionType";
 
 const initialState = {
@@ -47,6 +48,12 @@ export const publicUserReducer = (state = initialState, action) => {
     case TOGGLE_PUBLIC_USER_COLLECTION_FETCHING_STATE: {
       return { ...state, isCollectionLoading: !state.isCollectionLoading };
     }
+    case DEL_PHOTOS:
+      return {
+        ...state,
+        photos: [],
+        likedPhotos: [],
+      };
     default: {
       return state;
     }

@@ -6,6 +6,8 @@ import {
   fetchPublicUserLikedPhotos,
   fetchPublicUserCollections,
 } from "../redux/actions/publicProfileAction";
+
+import { emptyImages } from "../redux/actions/fetchPhotosAction";
 import "./styles/publicUser.scss";
 import "font-awesome/css/font-awesome.min.css";
 import PublicUserPhotos from "../components/publicUserPhotos";
@@ -24,6 +26,29 @@ class PublicUserProfilePage extends Component {
     activeCollection: "",
   };
 
+  handleScroll = () => {
+    const windowHeight =
+      "innerHeight" in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight) {
+      console.log("bottom reached");
+      this.setState({ ...this.state, page_no: this.state.page_no + 1 });
+    } else {
+      console.log("bottom not reached");
+    }
+  };
+
   componentDidMount() {
     let username = this.props.match.params.username;
     this.setState({ publicUser: username });
@@ -31,16 +56,28 @@ class PublicUserProfilePage extends Component {
     this.props.fetchPublicUserPhotos(username, this.state.page_no);
     this.props.fetchPublicUserLikedPhotos(username, this.state.page_no);
     this.props.fetchPublicUserCollections(username);
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log(prevProps.match.params.username);
     console.log(this.props.match.params.username);
-    if (
-      prevProps.match.params.username !== this.props.match.params.username ||
-      prevState.page_no < this.state.page_no
-    ) {
+    if (prevState.page_no < this.state.page_no) {
       this.props.fetchPublicUser(this.props.match.params.username);
+      this.props.fetchPublicUserPhotos(
+        this.props.match.params.username,
+        this.state.page_no
+      );
+    } else {
+      console.log("not updating");
+    }
+
+    if (prevProps.match.params.username !== this.props.match.params.username) {
+      this.props.emptyImages();
       this.props.fetchPublicUserPhotos(
         this.props.match.params.username,
         this.state.page_no
@@ -50,8 +87,6 @@ class PublicUserProfilePage extends Component {
         this.state.page_no
       );
       this.props.fetchPublicUserCollections(this.props.match.params.username);
-    } else {
-      console.log("not updating");
     }
   }
 
@@ -189,4 +224,5 @@ export default connect(mapStateToProps, {
   fetchPublicUserPhotos,
   fetchPublicUserLikedPhotos,
   fetchPublicUserCollections,
+  emptyImages,
 })(PublicUserProfilePage);
