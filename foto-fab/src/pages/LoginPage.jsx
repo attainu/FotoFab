@@ -3,6 +3,7 @@ import LoginAnimation from "../components/LoginAnimation";
 import LoginForm from "../components/LoginForm";
 import "./styles/loginPage.scss";
 import LoginPhoto from "../components/LoginPhoto";
+import { Link } from "react-router-dom";
 class LoginPage extends Component {
   componentDidMount() {
     document.getElementById("navbar").style.display = "none";
@@ -17,6 +18,7 @@ class LoginPage extends Component {
         {/* <LoginAnimation /> */}
         <LoginPhoto />
         <LoginForm />
+        <Link to="/signUp">not a member yet? Sign up!</Link>
       </div>
     );
   }

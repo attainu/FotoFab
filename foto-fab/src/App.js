@@ -9,6 +9,7 @@ import PublicUserProfilePage from "./pages/publicUserProfilePage";
 import AboutPage from "./pages/AboutPage";
 import CollectionPage from "./pages/CollectionPhotos";
 import DetailPage from "./pages/DetailPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/signUp" component={SignUpPage} />
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/search/:searchQuery" component={SearchPage} />
         <Route exact path="/about" component={AboutPage} />

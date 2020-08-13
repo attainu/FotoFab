@@ -6,14 +6,14 @@ import {
   fetchPublicUserLikedPhotos,
   fetchPublicUserCollections,
 } from "../redux/actions/publicProfileAction";
-
-import { emptyImages } from "../redux/actions/fetchPhotosAction";
 import "./styles/publicUser.scss";
 import "font-awesome/css/font-awesome.min.css";
 import PublicUserPhotos from "../components/publicUserPhotos";
 import PublicUserLikes from "../components/PublicUserLikes";
 import PublicUserCollection from "../components/PublicUserCollection";
 import MobileNavigation from "../components/mobileNavigation";
+import Modal from "../components/Modal";
+import { fetchLocation } from "../redux/actions/fetchCoordinates";
 
 class PublicUserProfilePage extends Component {
   state = {
@@ -24,29 +24,9 @@ class PublicUserProfilePage extends Component {
     activePhoto: "active",
     activeLikes: "",
     activeCollection: "",
-  };
-
-  handleScroll = () => {
-    const windowHeight =
-      "innerHeight" in window
-        ? window.innerHeight
-        : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
-    const docHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight
-    );
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight) {
-      console.log("bottom reached");
-      this.setState({ ...this.state, page_no: this.state.page_no + 1 });
-    } else {
-      console.log("bottom not reached");
-    }
+    show: false,
+    lat: "",
+    lng: "",
   };
 
   componentDidMount() {
@@ -56,28 +36,16 @@ class PublicUserProfilePage extends Component {
     this.props.fetchPublicUserPhotos(username, this.state.page_no);
     this.props.fetchPublicUserLikedPhotos(username, this.state.page_no);
     this.props.fetchPublicUserCollections(username);
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log(prevProps.match.params.username);
     console.log(this.props.match.params.username);
-    if (prevState.page_no < this.state.page_no) {
+    if (
+      prevProps.match.params.username !== this.props.match.params.username ||
+      prevState.page_no < this.state.page_no
+    ) {
       this.props.fetchPublicUser(this.props.match.params.username);
-      this.props.fetchPublicUserPhotos(
-        this.props.match.params.username,
-        this.state.page_no
-      );
-    } else {
-      console.log("not updating");
-    }
-
-    if (prevProps.match.params.username !== this.props.match.params.username) {
-      this.props.emptyImages();
       this.props.fetchPublicUserPhotos(
         this.props.match.params.username,
         this.state.page_no
@@ -87,8 +55,19 @@ class PublicUserProfilePage extends Component {
         this.state.page_no
       );
       this.props.fetchPublicUserCollections(this.props.match.params.username);
+    } else {
+      console.log("not updating");
     }
   }
+
+  showModal = () => {
+    this.props.fetchLocation(this.props.publicUser.location);
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   handlePhotos = () => {
     console.log("photos");
@@ -122,6 +101,7 @@ class PublicUserProfilePage extends Component {
     });
   };
   render() {
+    //console.log(this.state);
     const { publicUser } = this.props;
     const { showLikes, showCollection } = this.state;
     return (
@@ -149,16 +129,22 @@ class PublicUserProfilePage extends Component {
                 <div className="location-portfolio-bio">
                   <nav className="links">
                     {!publicUser.location ? null : (
-                      <a
-                        href={publicUser.location}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <div>
-                          <i className="fa fa-location-arrow"></i>{" "}
+                      <>
+                        <div className="location" onClick={this.showModal}>
+                          <i className="fa fa-location-arrow"></i>
                           {publicUser.location}
                         </div>
-                      </a>
+                        {!this.props.location ? null : (
+                          <Modal
+                            show={this.state.show}
+                            handleClose={this.hideModal}
+                          >
+                            <p>Map</p>
+                            <p>{this.props.location.lat}</p>
+                            <p>{this.props.location.lng}</p>
+                          </Modal>
+                        )}
+                      </>
                     )}
                     {!publicUser.portfolio_url ? null : (
                       <a
@@ -217,6 +203,7 @@ class PublicUserProfilePage extends Component {
 const mapStateToProps = (state) => {
   return {
     publicUser: state.publicUserState.publicUser,
+    location: state.locationState.location,
   };
 };
 export default connect(mapStateToProps, {
@@ -224,5 +211,5 @@ export default connect(mapStateToProps, {
   fetchPublicUserPhotos,
   fetchPublicUserLikedPhotos,
   fetchPublicUserCollections,
-  emptyImages,
+  fetchLocation,
 })(PublicUserProfilePage);

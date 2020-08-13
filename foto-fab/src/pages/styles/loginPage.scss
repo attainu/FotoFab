@@ -1,9 +1,10 @@
-.login-page{
-    display: flex;
+.login-page {
+  display: flex;
+  font-family: "Montserrat", sans-serif;
 }
 
-@media (max-width: 768px){
-    .login-page{
-        flex-direction: column;
-    }
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
 }

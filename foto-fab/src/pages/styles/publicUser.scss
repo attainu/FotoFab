@@ -37,6 +37,7 @@
         }
 
         button {
+          font-family: "Montserrat", sans-serif;
           height: 35px;
           width: 120px;
           border: none;
@@ -77,6 +78,22 @@
         .links {
           display: flex;
           flex-wrap: wrap;
+        }
+        .location {
+          cursor: pointer;
+          margin-bottom: 20px;
+          word-break: break-all;
+          margin-right: 30px;
+          color: rgba(0, 0, 0, 0.637);
+          font-weight: 400;
+          margin-top: 20px;
+
+          i {
+            margin-right: 10px;
+          }
+          &:hover {
+            color: black;
+          }
         }
 
         a {

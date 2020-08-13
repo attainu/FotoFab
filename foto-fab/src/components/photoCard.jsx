@@ -31,7 +31,6 @@ class PhotoCard extends Component {
 
   render() {
     const { photo } = this.props;
-    console.log(photo);
     return (
       // <Link to={`/detailPage/${photo.id}`}>
       <div className="photo-card">
