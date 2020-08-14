@@ -7,8 +7,25 @@ import axios from "axios";
 import Collection from "../components/Collection";
 import { withRouter } from "react-router-dom";
 import "./styles/detailPage.scss";
-
+import { fetchLocation } from "../redux/actions/fetchCoordinates";
+import Modal from "../components/Modal";
 class DetailPage extends Component {
+  state = {
+    show: false,
+    lat: "",
+    lng: "",
+  };
+
+  showModal = () => {
+    this.props
+      .fetchLocation(this.props.photo.location.name)
+      .catch(alert("searching..."));
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
   handleSearch = (event) => {
     console.log(event.target.innerText);
     this.props.history.push(`/search/${event.target.innerText}`);
@@ -30,14 +47,18 @@ class DetailPage extends Component {
       url: this.props.photo.links.download,
       method: "GET",
       responseType: "blob",
-    }).then((response) => {
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `${this.props.photo.id}.jpg`);
-      document.body.appendChild(link);
-      link.click();
-    });
+    })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${this.props.photo.id}.jpg`);
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((err) =>
+        alert("Sorry! Photos Cannot be downloaded due to CORS error")
+      );
   };
 
   render() {
@@ -59,9 +80,24 @@ class DetailPage extends Component {
                     <p className="name" onClick={this.handleProfile}>
                       {photo.user.name}
                     </p>
-                    <p className="location">
-                      {!photo.location ? null : photo.location.name}
-                    </p>
+
+                    {!photo.location ? null : (
+                      <>
+                        <p className="location" onClick={this.showModal}>
+                          {photo.location.name}
+                        </p>
+                        {!this.props.location ? null : (
+                          <Modal
+                            show={this.state.show}
+                            handleClose={this.hideModal}
+                          >
+                            <p>Map</p>
+                            <p>{this.props.location.lat}</p>
+                            <p>{this.props.location.lng}</p>
+                          </Modal>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="download">
@@ -137,9 +173,10 @@ class DetailPage extends Component {
 const mapStateToProps = (state) => {
   return {
     photo: state.detailPhoto.photo,
+    location: state.locationState.location,
   };
 };
 
-export default connect(mapStateToProps, { fetchDetailPhotos })(
+export default connect(mapStateToProps, { fetchDetailPhotos, fetchLocation })(
   withRouter(DetailPage)
 );

@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signUp" component={SignUpPage} />
-        <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/profile/:username" component={ProfilePage} />
         <Route exact path="/search/:searchQuery" component={SearchPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/collection/:id" component={CollectionPage} />

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import buildingImage from "../image/building.jpg";
-import sky from "../image/skyBackground.jpg";
 import shutter from "../image/shutter.png";
 import signUpGirl from "../image/signUpGirl.png";
 import "./styles/signUp.scss";

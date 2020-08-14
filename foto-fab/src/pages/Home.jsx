@@ -8,7 +8,10 @@ import Spinner from "../components/Spinner";
 import Loader from "./Loader";
 import MobileNavigation from "../components/mobileNavigation";
 import Navbar from "../components/Navbar";
-
+import {
+  fetchCurrentUserLikedPhotos,
+  fetchCurrentUserCollections,
+} from "../redux/actions/currentUserAction";
 class Home extends Component {
   state = {
     page_no: 1,
@@ -37,6 +40,11 @@ class Home extends Component {
   };
 
   componentDidMount() {
+    console.log("window history", window.location.search);
+    if (this.props.user) {
+      this.props.fetchCurrentUserLikedPhotos(this.props.user.username, 1);
+      this.props.fetchCurrentUserCollections(this.props.user.username);
+    }
     this.props.emptyImages();
     this.props.fetchImages(this.state.page_no);
     window.addEventListener("scroll", this.handleScroll);
@@ -45,9 +53,9 @@ class Home extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
   componentDidUpdate = (prevProp, prevState) => {
+    console.log("window history", window.location.search);
     if (prevState.page_no < this.state.page_no) {
       console.log(prevState.page_no);
-
       this.props.fetchImages(this.state.page_no);
     } else {
       console.log("not updating");
@@ -83,7 +91,13 @@ const mapStateToProps = (state) => {
   console.log(state.photoState.photos);
   return {
     photos: state.photoState.photos,
+    user: state.userState.userProfile,
   };
 };
 
-export default connect(mapStateToProps, { fetchImages, emptyImages })(Home);
+export default connect(mapStateToProps, {
+  fetchImages,
+  emptyImages,
+  fetchCurrentUserLikedPhotos,
+  fetchCurrentUserCollections,
+})(Home);

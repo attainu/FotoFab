@@ -18,9 +18,9 @@ export class MobileNavigation extends Component {
         <Link className="home" to="/">
           <i className="fa fa-home" aria-hidden="true"></i>
         </Link>
-        <div className="submit-photo" onClick={this.handleClick}>
+        {/* <div className="submit-photo" onClick={this.handleClick}>
           <i className="fa fa-plus-square-o" aria-hidden="true"></i>
-        </div>
+        </div> */}
         {!isLoggedIn ? (
           <NavLink
             to="/login"

@@ -31,13 +31,13 @@ export const publicUserReducer = (state = initialState, action) => {
       return { ...state, isUserLoading: !state.isUserLoading };
     }
     case PUBLIC_PHOTO: {
-      return { ...state, photos: [...state.photos, ...payload] };
+      return { ...state, photos: payload };
     }
     case TOGGLE_PUBLIC_PHOTO_FETCHING_STATE: {
       return { ...state, isPhotosLoading: !state.isPhotosLoading };
     }
     case PUBLIC_USERS_LIKED_PHOTOS: {
-      return { ...state, likedPhotos: [...state.likedPhotos, ...payload] };
+      return { ...state, likedPhotos: payload };
     }
     case TOGGLE_PUBLIC_USERS_LIKED_PHOTO_FETCHING_STATE: {
       return { ...state, isLikedPhotoLoading: !state.isLikedPhotoLoading };

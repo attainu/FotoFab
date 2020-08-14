@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PhotoCard from "./photoCard";
+import PhotoCard from "../photoCard";
 
-class publicUserPhotos extends Component {
+class UserPhotos extends Component {
   render() {
     const { photos } = this.props;
     return !photos ? null : (
@@ -21,4 +21,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(publicUserPhotos);
+export default connect(mapStateToProps, null)(UserPhotos);

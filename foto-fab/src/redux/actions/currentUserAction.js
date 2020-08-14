@@ -1,0 +1,68 @@
+import {
+  CURRENT_USERS_LIKED_PHOTOS,
+  TOGGLE_CURRENT_USERS_LIKED_PHOTO_FETCHING_STATE,
+  CURRENT_USER_COLLECTION,
+  TOGGLE_CURRENT_USER_COLLECTION_FETCHING_STATE,
+  LIKE_PHOTO,
+  UNLIKE_PHOTO,
+  DATA_FETCHED,
+} from "../actionType";
+import axios from "axios";
+import { key } from "../../config";
+
+export const fetchCurrentUserLikedPhotos = (username, page_no) => async (
+  dispatch
+) => {
+  try {
+    dispatch({ type: TOGGLE_CURRENT_USERS_LIKED_PHOTO_FETCHING_STATE });
+    const { data } = await axios.get(
+      `https://api.unsplash.com/users/${username}/likes?page=${page_no}&client_id=${key.ACCESS_KEY}`
+    );
+    console.log(data);
+    dispatch({ type: CURRENT_USERS_LIKED_PHOTOS, payload: data });
+  } catch (err) {
+    console.error(err.message);
+  } finally {
+    dispatch({ type: TOGGLE_CURRENT_USERS_LIKED_PHOTO_FETCHING_STATE });
+    dispatch({ type: DATA_FETCHED });
+  }
+};
+
+export const fetchCurrentUserCollections = (username) => async (dispatch) => {
+  try {
+    dispatch({ type: CURRENT_USER_COLLECTION, payload: null });
+    dispatch({ type: TOGGLE_CURRENT_USER_COLLECTION_FETCHING_STATE });
+    const { data } = await axios.get(
+      `https://api.unsplash.com/users/${username}/collections?client_id=${key.ACCESS_KEY}`
+    );
+    console.log(data);
+    dispatch({ type: CURRENT_USER_COLLECTION, payload: data });
+  } catch (err) {
+    console.error(err.message);
+  } finally {
+    dispatch({ type: TOGGLE_CURRENT_USER_COLLECTION_FETCHING_STATE });
+  }
+};
+
+export const likePictureLocally = (photo) => {
+  console.log("liked Photos");
+  return {
+    type: LIKE_PHOTO,
+    payload: photo,
+  };
+};
+
+export const removePictureLocally = (id) => {
+  console.log("unlike Photos");
+  return {
+    type: UNLIKE_PHOTO,
+    payload: id,
+  };
+};
+
+// export const dataFetched = () => {
+//   console.log("checking data fetched or not");
+//   return {
+//     type: DATA_FETCHED,
+//   };
+// };

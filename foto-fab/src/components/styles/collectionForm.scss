@@ -1,0 +1,26 @@
+.collection-form {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.collection-form {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+
+    input {
+        height: 50px;
+        width: 70%;
+    }
+
+    button {
+        height: 50px;
+    }
+}

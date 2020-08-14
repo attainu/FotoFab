@@ -1,22 +1,80 @@
 import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
 import "./styles/navbar.scss";
 import ViewProfile from "./ViewProfile";
+import { connect } from "react-redux";
+import {
+  logOutUser,
+  unsplashLogin,
+  fetchCurrentUserProfile,
+} from "../redux/actions/userAction";
+
+import axios from "axios";
+import { key } from "../config";
 class Navbar extends Component {
   state = {
     isToggled: false,
-    isLoggedIn: false,
+    loginClicked: false,
+    code: null,
   };
+
+  fetchUserLikedPhotos = async (username) => {
+    try {
+      const { data } = await axios.get(
+        `https://api.unsplash.com/users/${username}/likes/?client_id=${key.ACCESS_KEY}`
+      );
+      console.log(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  async componentDidMount() {
+    console.log(this.props.location.search);
+    // console.log("window history", window.location.search);
+    const query = window.location.search.slice(6);
+    this.setState({ code: query });
+    if (this.props.accessTokenData === null) {
+      this.props.unsplashLogin(query);
+    } else {
+      this.props.fetchCurrentUserProfile(
+        this.props.accessTokenData.access_token
+      );
+    }
+
+    if (this.props.user) {
+      this.fetchUserLikedPhotos(this.props.user.username);
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.accessTokenData !== null && this.props.user === null) {
+      this.props.fetchCurrentUserProfile(
+        this.props.accessTokenData.access_token
+      );
+    }
+  }
 
   handleToggle = () => {
     console.log("clicked");
     this.setState({ isToggled: !this.state.isToggled });
   };
 
+  handleLogin = () => {
+    console.log("clicked");
+    this.setState({ loginClicked: true });
+  };
+
+  handleProfile = () => {
+    this.props.history.push(`/profile/${this.props.user.username}`);
+  };
+
   render() {
-    const { isToggled, isLoggedIn } = this.state;
+    const { isToggled } = this.state;
     let activeClass = "";
     if (isToggled) activeClass = "active";
+    console.log("window history", this.state.code);
 
     return (
       <nav className="navbar" id="navbar">
@@ -57,22 +115,28 @@ class Navbar extends Component {
                 About
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <button className="button">Submit a photo</button>
+            </li> */}
+            <li>
+              {this.props.user ? (
+                <ViewProfile
+                  profilePic={this.props.user.profile_image.large}
+                  handleProfile={this.handleProfile}
+                />
+              ) : null}
             </li>
             <li>
-              {isLoggedIn ? (
-                <Link to="/profile">
-                  <ViewProfile />
-                </Link>
+              {this.props.accessTokenData ? (
+                <button onClick={() => this.props.logOutUser()}>Logout</button>
               ) : (
-                <NavLink
-                  to="/login"
-                  className="main-nav"
-                  activeClassName="main-nav-active active"
+                <a
+                  href={`https://unsplash.com/oauth/authorize?&client_id=${key.ACCESS_KEY}&redirect_uri=${key.REDIRECT_URI}&response_type=code&scope=public+read_user+write_user+write_likes+write_collections`}
                 >
-                  <button className="login-button">Login</button>
-                </NavLink>
+                  <button onClick={this.handleLogin} className="login-button">
+                    Login
+                  </button>
+                </a>
               )}
             </li>
           </ul>
@@ -82,6 +146,17 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+const mapStateToProps = (storeState) => {
+  return {
+    accessTokenData: storeState.userState.accessTokenData,
+    user: storeState.userState.userProfile,
+  };
+};
+
+export default connect(mapStateToProps, {
+  logOutUser,
+  unsplashLogin,
+  fetchCurrentUserProfile,
+})(withRouter(Navbar));
 
 //TODO: background: photo of the day

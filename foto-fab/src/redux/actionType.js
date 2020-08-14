@@ -53,3 +53,40 @@ export const DEL_PUBLIC_PHOTO = "DEL_PUBLIC_PHOTO";
 export const FETCH_LOCATION_COORDINATES = "FETCH_LOCATION_COORDINATES";
 export const TOGGLE_COORDINATE_FETCHING_STATE =
   "TOGGLE_COORDINATE_FETCHING_STATE";
+
+//------------login from unsplash--------------
+export const UNSPLASH_LOGIN = "UNSPLASH_LOGIN";
+export const LOGOUT = "LOGOUT";
+
+//Get current user's profile
+export const SET_USER_PROFILE = "SET_USER_PROFILE";
+export const TOGGLE_USER_PROFILE_GETTING_STATE =
+  "TOGGLE_USER_PROFILE_GETTING_STATE";
+
+//current user actions
+export const LIKE_A_PHOTO = "LIKE_A_PHOTO";
+export const UNLIKE_A_PHOTO = "UNLIKE_A_PHOTO";
+export const CREATE_A_COLLECTION = "CREATE_A_COLLECTION";
+export const DELETE_A_COLLECTION = "DELETE_A_COLLECTION";
+export const ADD_PHOTO_TO_A_COLLECTION = "ADD_PHOTO_TO_A_COLLECTION";
+export const REMOVE_PHOTO_FROM_COLLECTION = "REMOVE_PHOTO_FROM_COLLECTION";
+
+//fetch CURRENT user's liked photos
+export const TOGGLE_CURRENT_USERS_LIKED_PHOTO_FETCHING_STATE =
+  "TOGGLE_CURRENT_USERS_LIKED_PHOTO_FETCHING_STATE";
+export const CURRENT_USERS_LIKED_PHOTOS = "CURRENT_USERS_LIKED_PHOTOS";
+
+//fetch CURRENT user's collection
+export const TOGGLE_CURRENT_USER_COLLECTION_FETCHING_STATE =
+  "TOGGLE_CURRENT_USER_COLLECTION_FETCHING_STATE";
+export const CURRENT_USER_COLLECTION = "CURRENT_USER_COLLECTION";
+
+//current user's local action
+export const LIKE_PHOTO = "LIKE_PHOTO";
+export const UNLIKE_PHOTO = "UNLIKE_PHOTO";
+
+//check if liked data fetched or not
+export const DATA_FETCHED = "DATA_FETCHED";
+
+//create a new collection
+export const CREATE_A_NEW_COLLECTION = "CREATE_A_NEW_COLLECTION";
