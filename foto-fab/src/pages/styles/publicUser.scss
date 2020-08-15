@@ -76,8 +76,6 @@
           }
         }
 
-
-
         .message {
           background-color: black;
 
@@ -211,9 +209,19 @@
       }
     }
   }
+}
 
-  //   .location-portfolio-bio {
-  //     display: flex;
-  //     flex-direction: column;
-  //   }
+.link-div {
+  margin: 10px;
+  .link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.513);
+    font-weight: 600;
+    &:hover {
+      color: black;
+    }
+  }
+  .active {
+    color: black;
+  }
 }

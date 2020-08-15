@@ -10,6 +10,7 @@ import {
   unsplashLogin,
   fetchCurrentUserProfile,
 } from "../redux/actions/userAction";
+import { showCreateCollectionModal } from "../redux/actions/currentUserAction";
 
 import axios from "axios";
 import { key } from "../config";
@@ -104,22 +105,27 @@ class Navbar extends Component {
               <NavLink
                 className="main-nav"
                 activeClassName="main-nav-active active"
-                to="/"
+                to="/about"
               >
-                Home
+                About
               </NavLink>
             </li>
             <li>
               <NavLink
                 className="main-nav"
                 activeClassName="main-nav-active active"
-                to="/about"
+                to="/"
               >
-                About
+                Home
               </NavLink>
             </li>
             {/* <li>
-              <button className="button">Submit a photo</button>
+              <button
+                onClick={() => this.props.showCreateCollectionModal()}
+                className="button"
+              >
+                Create collection
+              </button>
             </li> */}
             <li>
               {this.props.user ? (
@@ -138,13 +144,15 @@ class Navbar extends Component {
                   Logout
                 </button>
               ) : (
-                <a
-                  href={`https://unsplash.com/oauth/authorize?&client_id=${key.ACCESS_KEY}&redirect_uri=${key.REDIRECT_URI}&response_type=code&scope=public+read_user+write_user+write_likes+write_collections`}
+                <NavLink
+                  className="main-nav"
+                  activeClassName="main-nav-active active"
+                  to="/login"
                 >
                   <button onClick={this.handleLogin} className="login-button">
                     Login
                   </button>
-                </a>
+                </NavLink>
               )}
             </li>
           </ul>
@@ -165,6 +173,5 @@ export default connect(mapStateToProps, {
   logOutUser,
   unsplashLogin,
   fetchCurrentUserProfile,
+  showCreateCollectionModal,
 })(withRouter(Navbar));
-
-//TODO: background: photo of the day

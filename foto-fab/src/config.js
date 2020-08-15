@@ -1,6 +1,6 @@
 export const key = {
-  ACCESS_KEY: "gR1gK6qumpkKPVT-nuV9NjqYqZTcE3LC8k7D2IS_aZc",
-  SECRET_KEY: "RWspsOH54UmdqpzQ_hZaO2ngH530i7YqKltmZTnoVBQ",
+  ACCESS_KEY: "AjpwwYKydi1dZXv_5HEmAARHjC5kaj_4rDzVs1rhsZM",
+  SECRET_KEY: "B30_ee5RRX00ilVo0uP7871yZkthAza8WwatDvDhhBY",
   REDIRECT_URI: "http://localhost:3000/",
 };
 
@@ -15,3 +15,7 @@ export const key = {
 //-----------Foto-fab----------------------
 //access_key : "FnpgKhsrpu43nWAdiMJxA3Rj0W1Yo6aPOTdDFINzgsg"
 //secret_key : "Qs5JTqlQBJT6z8HH2k7vyXzs4XV7V46_4KbTTH3WOK0"
+
+//------------FOTO-FAB---------------------
+//access_key: "AjpwwYKydi1dZXv_5HEmAARHjC5kaj_4rDzVs1rhsZM"
+//secret_key: "B30_ee5RRX00ilVo0uP7871yZkthAza8WwatDvDhhBY"

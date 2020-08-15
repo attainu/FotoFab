@@ -12,6 +12,7 @@
 }
 
 .search-bar-container .black-layer {
+  overflow: hidden;
   position: absolute;
   z-index: 2;
   height: 450px;
@@ -20,6 +21,8 @@
 }
 
 .about-foto-fab {
+  overflow: hidden;
+
   h1 {
     font-size: 30px;
     color: #fff;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import "./styles/mobileNav.scss";
+import { withRouter } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import ViewProfile from "./ViewProfile";
 import { connect } from "react-redux";
@@ -8,8 +9,11 @@ export class MobileNavigation extends Component {
   handleClick = () => {
     console.log("clicked");
   };
+
   handleProfile = () => {
-    this.props.history.push(`/profile/${this.props.user.username}`);
+    if (this.props.user) {
+      this.props.history.push(`/profile/${this.props.user.username}`);
+    }
   };
   render() {
     return (
@@ -45,4 +49,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(MobileNavigation);
+export default connect(mapStateToProps, null)(withRouter(MobileNavigation));

@@ -10,7 +10,10 @@ import MobileNavigation from "../components/mobileNavigation";
 import Navbar from "../components/Navbar";
 import StickyBar from "../components/StickyBar";
 import { fetchCurrentUserProfile } from "../redux/actions/userAction";
-
+import {
+  fetchCurrentUserLikedPhotos,
+  fetchCurrentUserCollections,
+} from "../redux/actions/currentUserAction";
 class Home extends Component {
   state = {
     page_no: 1,
@@ -43,6 +46,9 @@ class Home extends Component {
     this.props.emptyImages();
     this.props.fetchImages(this.state.page_no);
     window.addEventListener("scroll", this.handleScroll);
+    if (this.props.user) {
+      this.props.fetchCurrentUserCollections(this.props.user.username);
+    }
   }
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -60,6 +66,10 @@ class Home extends Component {
       this.props.fetchCurrentUserProfile(
         this.props.accessTokenData.access_token
       );
+    }
+
+    if (this.props.user && this.props.collections === null) {
+      this.props.fetchCurrentUserCollections(this.props.user.username);
     }
 
     console.log(this.props.user);
@@ -97,6 +107,7 @@ const mapStateToProps = (state) => {
     photos: state.photoState.photos,
     user: state.userState.userProfile,
     accessTokenData: state.userState.accessTokenData,
+    collections: state.currentUserState.collections,
   };
 };
 
@@ -104,4 +115,5 @@ export default connect(mapStateToProps, {
   fetchImages,
   emptyImages,
   fetchCurrentUserProfile,
+  fetchCurrentUserCollections,
 })(Home);

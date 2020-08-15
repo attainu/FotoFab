@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import "font-awesome/css/font-awesome.min.css";
-// import Collection from "./Collection";
 import UserLikes from "./UserLikes";
 import PublicUserPhotos from "../publicUserPhotos";
 import PublicUserCollection from "../PublicUserCollection";
 import Modal from "../Modal";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-// import UserPhoto from "./UserPhoto";
+import { withRouter, Route, Switch, NavLink } from "react-router-dom";
 
 class CurrentUserProfile extends Component {
   handleEdit = () => {
@@ -15,21 +13,7 @@ class CurrentUserProfile extends Component {
     this.props.history.push(`/editProfile`);
   };
   render() {
-    const {
-      user,
-      showLikes,
-      showCollection,
-      location,
-      show,
-      activeCollection,
-      activeLikes,
-      activePhoto,
-      hideModal,
-      showModal,
-      handleCollection,
-      handleLikedPhotos,
-      handlePhotos,
-    } = this.props;
+    const { user, show, hideModal, showModal } = this.props;
     return (
       <div className="profile-container">
         <div className="all-bio">
@@ -39,19 +23,11 @@ class CurrentUserProfile extends Component {
           <div className="name-data">
             <div className="name-and-follow-button">
               <h1>{user.name}</h1>
-              {/* <h1>
-                <button className="follow">
-                  <i className="fa fa-user-plus"></i>Follow
-                </button>
-              </h1> */}
               <h1>
                 <button onClick={this.handleEdit} className="edit">
                   Edit Profile
                 </button>
               </h1>
-              {/* <h1>
-                    <button className="message">Message</button>
-                  </h1> */}
             </div>
             <div className="location-portfolio-bio">
               <nav className="links">
@@ -84,36 +60,60 @@ class CurrentUserProfile extends Component {
               </nav>
 
               <p>{user.bio}</p>
-              {/* <p>Interests if any</p> */}
             </div>
           </div>
         </div>
         <div className="photos-likes-collections">
-          <div className="photos" onClick={handlePhotos}>
-            <p className={activePhoto}>
-              <i className="fa fa-image"></i> Photos {user.total_photos}
-            </p>
+          <div className="link-div">
+            <NavLink
+              className="link"
+              activeClassName="active"
+              exact
+              to={`/profile/${user.username}`}
+            >
+              <p>
+                <i className="fa fa-image"></i> Photos {user.total_photos}
+              </p>
+            </NavLink>
           </div>
-          <div className="likes" onClick={handleLikedPhotos}>
-            <p className={activeLikes}>
-              <i className="fa fa-heart"></i> Likes {this.props.likes.length}
-            </p>
+          <div className="link-div">
+            {!this.props.likes ? null : (
+              <NavLink
+                className="link"
+                activeClassName="active"
+                to={`/profile/${user.username}/likes`}
+              >
+                <p>
+                  <i className="fa fa-heart"></i> Likes{" "}
+                  {this.props.likes.length}
+                </p>
+              </NavLink>
+            )}
           </div>
-          <div className="collection" onClick={handleCollection}>
-            <p className={activeCollection}>
-              <i className="fa fa-object-group"></i>Collections{" "}
-              {user.total_collections}
-            </p>
+
+          <div className="link-div">
+            <NavLink
+              className="link"
+              activeClassName="active"
+              to={`/profile/${user.username}/collections`}
+            >
+              <p>
+                <i className="fa fa-object-group"></i>Collections{" "}
+                {user.total_collections}
+              </p>
+            </NavLink>
           </div>
         </div>
         <hr />
-        {!showLikes && !showCollection ? (
-          <PublicUserPhotos />
-        ) : showLikes ? (
-          <UserLikes />
-        ) : (
-          <PublicUserCollection />
-        )}
+        <Switch>
+          <Route exact path="/profile/:username" component={PublicUserPhotos} />
+          <Route exact path="/profile/:username/likes" component={UserLikes} />
+          <Route
+            exact
+            path="/profile/:username/collections"
+            component={PublicUserCollection}
+          />
+        </Switch>
       </div>
     );
   }

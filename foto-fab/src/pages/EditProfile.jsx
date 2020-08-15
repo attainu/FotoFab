@@ -42,9 +42,11 @@ class EditProfile extends Component {
         bioData,
         this.props.accessToken.access_token
       );
-    } else {
+    } 
+    else {
       alert("please fill names");
     }
+    this.props.history.push(`/profile/${this.props.user.username}`);
   };
 
   handleCancel = (e) => {

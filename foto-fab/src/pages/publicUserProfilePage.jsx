@@ -11,16 +11,12 @@ import MobileNavigation from "../components/mobileNavigation";
 import { emptyImages } from "../redux/actions/searchPhotosAction";
 import { fetchLocation } from "../redux/actions/fetchCoordinates";
 import UserProfile from "../components/UserProfile";
+import Spinner from "../components/Spinner";
 
 class PublicUserProfilePage extends Component {
   state = {
     page_no: 1,
-    showLikes: false,
-    showCollection: false,
     publicUser: this.props.match.params.username,
-    activePhoto: "active",
-    activeLikes: "",
-    activeCollection: "",
     show: false,
     lat: "",
     lng: "",
@@ -67,60 +63,18 @@ class PublicUserProfilePage extends Component {
     this.setState({ show: false });
   };
 
-  handlePhotos = () => {
-    console.log("photos");
-    this.setState({
-      showLikes: false,
-      showCollection: false,
-      activeLikes: "notActive",
-      activeCollection: "notActive",
-      activePhoto: "active",
-    });
-  };
-  handleLikedPhotos = () => {
-    console.log("likes");
-    this.setState({
-      showLikes: true,
-      showCollection: false,
-      activeLikes: "active",
-      activePhoto: "notActive",
-      activeCollection: "notActive",
-    });
-  };
-
-  handleCollection = () => {
-    console.log("collections");
-    this.setState({
-      showLikes: false,
-      showCollection: true,
-      activeCollection: "active",
-      activePhoto: "notActive",
-      activeLikes: "notActive",
-    });
-  };
   render() {
-    //console.log(this.state);
-    const { publicUser, location } = this.props;
-    const { showLikes, showCollection } = this.state;
+    const { publicUser } = this.props;
     return (
       <>
         {!publicUser ? (
-          <h1>Loading...</h1>
+          <Spinner />
         ) : (
           <UserProfile
             user={publicUser}
-            showLikes={showLikes}
-            showCollection={showCollection}
-            location={location}
-            handlePhotos={this.handlePhotos}
-            handleLikedPhotos={this.handleLikedPhotos}
-            handleCollection={this.handleCollection}
             showModal={this.showModal}
             show={this.state.show}
             hideModal={this.hideModal}
-            activePhoto={this.state.activePhoto}
-            activeLikes={this.state.activeLikes}
-            activeCollection={this.state.activeCollection}
           />
         )}
         <MobileNavigation />
