@@ -29,10 +29,15 @@ class PhotoCard extends Component {
 
   handleDisplay = () => {
     console.log(this.state.display);
-    if (this.state.display === "none") {
-      this.setState({ display: "flex" });
+    if (this.props.accessTokenData !== null) {
+      if (this.state.display === "none") {
+        this.setState({ display: "flex" });
+      } else {
+        this.setState({ display: "none" });
+      }
     } else {
-      this.setState({ display: "none" });
+      alert("please login for creating collection");
+      this.props.history.push("/");
     }
   };
 
@@ -75,7 +80,7 @@ class PhotoCard extends Component {
     console.log("download");
     console.log(this.props.photo.links.download);
     axios({
-      url: this.props.photo.links.download,
+      url: this.props.photo.urls.small,
       method: "GET",
       responseType: "blob",
     })
@@ -118,7 +123,7 @@ class PhotoCard extends Component {
                 <i className="fa fa-plus"></i>
               </button>
             </div>
-            <div>
+            <div className="view-image">
               <button onClick={this.handlePhoto}>View Image</button>
             </div>
             <div className="photographer-download">

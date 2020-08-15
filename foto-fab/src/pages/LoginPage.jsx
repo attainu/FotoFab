@@ -13,7 +13,6 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="login-page">
-        {/* <LoginAnimation /> */}
         <LoginPhoto />
         <Link to="/signUp">not a member yet? Sign up!</Link>
       </div>

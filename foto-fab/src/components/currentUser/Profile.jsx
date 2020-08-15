@@ -6,9 +6,14 @@ import PublicUserPhotos from "../publicUserPhotos";
 import PublicUserCollection from "../PublicUserCollection";
 import Modal from "../Modal";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 // import UserPhoto from "./UserPhoto";
 
 class CurrentUserProfile extends Component {
+  handleEdit = () => {
+    console.log("edit");
+    this.props.history.push(`/editProfile`);
+  };
   render() {
     const {
       user,
@@ -39,6 +44,11 @@ class CurrentUserProfile extends Component {
                   <i className="fa fa-user-plus"></i>Follow
                 </button>
               </h1> */}
+              <h1>
+                <button onClick={this.handleEdit} className="edit">
+                  Edit Profile
+                </button>
+              </h1>
               {/* <h1>
                     <button className="message">Message</button>
                   </h1> */}
@@ -115,4 +125,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(CurrentUserProfile);
+export default connect(mapStateToProps, null)(withRouter(CurrentUserProfile));

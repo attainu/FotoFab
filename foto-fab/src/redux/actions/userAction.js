@@ -5,6 +5,7 @@ import {
   TOGGLE_USER_PROFILE_GETTING_STATE,
   LIKE_A_PHOTO,
   LIKE_PHOTO,
+  CREATE_A_NEW_COLLECTION,
 } from "../actionType";
 import axios from "axios";
 import { key } from "../../config";
@@ -36,7 +37,7 @@ export const fetchCurrentUserProfile = (accessToken) => async (dispatch) => {
     console.log(data);
     dispatch({ type: SET_USER_PROFILE, payload: data });
   } catch (err) {
-    alert("please refresh the page");
+    alert("WELCOME");
   } finally {
     dispatch({ type: TOGGLE_USER_PROFILE_GETTING_STATE });
   }
@@ -51,7 +52,7 @@ export const likeAPhoto = (id, accessToken) => async () => {
     console.log(data);
     // dispatch({ type: LIKE_A_PHOTO, payload: data });
   } catch (err) {
-    alert("like went wrong");
+    alert("something went wrong");
   }
 };
 //unlike a photo
@@ -76,14 +77,17 @@ export const unlikeAPhoto = (id, accessToken) => async () => {
 //   };
 // };
 
-export const createANewCollection = (title, accessToken) => async () => {
+export const createANewCollection = (title, accessToken) => async (
+  dispatch
+) => {
   try {
     const { data } = await axios.post(
       `https://api.unsplash.com/collections/?title=${title}&access_token=${accessToken}`
     );
+    dispatch({ type: CREATE_A_NEW_COLLECTION, payload: data });
     console.log(data);
   } catch (err) {
-    alert("sorry! cannot create a collection right now");
+    alert("Please verify your email address for creating collection");
   }
 };
 
@@ -98,6 +102,20 @@ export const addPhotoToACollection = (
       `https://api.unsplash.com/collections/${collection_id}/add/?photo_id=${photo_id}&access_token=${accessToken}`
     );
     console.log(data);
+  } catch (err) {
+    alert("sorry photo cannot be added");
+  }
+};
+
+export const editProfile = (first_name, last_name, bio, accessToken) => async (
+  dispatch
+) => {
+  try {
+    const { data } = await axios.put(
+      `https://api.unsplash.com/me?&first_name=${first_name}&last_name=${last_name}&bio=${bio}&access_token=${accessToken}`
+    );
+    console.log(data);
+    dispatch({ type: SET_USER_PROFILE, payload: data });
   } catch (err) {
     alert("sorry photo cannot be added");
   }

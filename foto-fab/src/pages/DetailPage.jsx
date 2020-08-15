@@ -10,10 +10,13 @@ import "./styles/detailPage.scss";
 import { fetchLocation } from "../redux/actions/fetchCoordinates";
 import Modal from "../components/Modal";
 class DetailPage extends Component {
+  container = React.createRef();
   state = {
     show: false,
     lat: "",
     lng: "",
+    open: false,
+    dval: " Download  ☰",
   };
 
   showModal = () => {
@@ -37,14 +40,43 @@ class DetailPage extends Component {
 
   componentDidMount() {
     console.log(this.props.match.params.id);
+    document.addEventListener("mousedown", this.handleClickOutside);
     this.props.fetchDetailPhotos(this.props.match.params.id);
   }
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
+  }
+  handleClickOutside = (event) => {
+    if (
+      this.container.current &&
+      !this.container.current.contains(event.target)
+    ) {
+      this.setState({
+        open: false,
+      });
+    }
+  };
+  handleButtonClick = () => {
+    this.setState((state) => {
+      return {
+        open: !state.open,
+      };
+    });
+  };
 
-  handleDownload = () => {
+  handleDownloadFull = (e) => {
+    this.setState((state) => {
+      return {
+        open: !state.open,
+      };
+    });
     console.log("download");
-    console.log(this.props.photo.links.download);
+    e.preventDefault();
+
+    //this.setState({dval:e.target.value});
+    console.log(e.target.value);
     axios({
-      url: this.props.photo.links.download,
+      url: this.props.photo.urls.full,
       method: "GET",
       responseType: "blob",
     })
@@ -60,8 +92,92 @@ class DetailPage extends Component {
         alert("Sorry! Photos Cannot be downloaded due to CORS error")
       );
   };
+  handleDownloadSmall = (e) => {
+    this.setState((state) => {
+      return {
+        open: !state.open,
+      };
+    });
+    console.log("download");
+    e.preventDefault();
 
+    //this.setState({dval:e.target.value});
+    console.log(e.target.value);
+    axios({
+      url: this.props.photo.urls.small,
+      method: "GET",
+      responseType: "blob",
+    })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${this.props.photo.id}.jpg`);
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((err) =>
+        alert("Sorry! Photos Cannot be downloaded due to CORS error")
+      );
+  };
+  handleDownloadRaw = (e) => {
+    this.setState((state) => {
+      return {
+        open: !state.open,
+      };
+    });
+    console.log("download");
+    e.preventDefault();
+
+    //this.setState({dval:e.target.value});
+    console.log(e.target.value);
+    axios({
+      url: this.props.photo.urls.raw,
+      method: "GET",
+      responseType: "blob",
+    })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${this.props.photo.id}.jpg`);
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((err) =>
+        alert("Sorry! Photos Cannot be downloaded due to CORS error")
+      );
+  };
+  handleDownloadRegular = (e) => {
+    this.setState((state) => {
+      return {
+        open: !state.open,
+      };
+    });
+    console.log("download");
+    e.preventDefault();
+
+    //this.setState({dval:e.target.value});
+    console.log(e.target.value);
+    axios({
+      url: this.props.photo.urls.regular,
+      method: "GET",
+      responseType: "blob",
+    })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${this.props.photo.id}.jpg`);
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((err) =>
+        alert("Sorry! Photos Cannot be downloaded due to CORS error")
+      );
+  };
   render() {
+    console.log(this.state.dval);
     const { photo } = this.props;
     console.log(photo);
     return (
@@ -101,7 +217,54 @@ class DetailPage extends Component {
                   </div>
                 </div>
                 <div className="download">
-                  <button onClick={this.handleDownload}>Download Image</button>
+                  {/* <button onClick={this.handleDownload}>Download Image</button> */}
+                  <div className="container" ref={this.container}>
+                    <button
+                      type="button"
+                      class="button"
+                      onClick={this.handleButtonClick}
+                    >
+                      {this.state.dval}
+                    </button>
+                    {this.state.open && (
+                      <div class="container">
+                        <ul
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            padding: "2px",
+                            position: "absolute",
+                            zIndex: "5",
+                          }}
+                        >
+                          <button
+                            onClick={this.handleDownloadFull}
+                            style={{ marginBottom: "2px" }}
+                          >
+                            Large
+                          </button>
+                          <button
+                            onClick={this.handleDownloadRegular}
+                            style={{ marginBottom: "2px" }}
+                          >
+                            Medium
+                          </button>
+                          <button
+                            onClick={this.handleDownloadSmall}
+                            style={{ marginBottom: "2px" }}
+                          >
+                            Small
+                          </button>
+                          <button
+                            onClick={this.handleDownloadRaw}
+                            style={{ marginBottom: "2px" }}
+                          >
+                            Original Size
+                          </button>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="photo-section">

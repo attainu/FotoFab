@@ -6,6 +6,7 @@
   background-color: #fff;
   color: black;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.459);
+  padding: 10px 0;
 }
 
 .brand-title {
@@ -103,7 +104,8 @@
   }
 }
 
-.login-button {
+.login-button,
+.logout-button {
   font-family: "Montserrat", sans-serif;
   height: 40px;
   font-size: 20px;
@@ -114,12 +116,18 @@
   background-color: rgba(0, 0, 0, 0.877);
   color: #fff;
   cursor: pointer;
+  margin-right: 10px;
+  margin-left: 40px;
 
   &:hover {
     animation-name: background-color;
     animation-duration: 500ms;
     animation-fill-mode: forwards; // the button to stay highlighted.
   }
+}
+
+.logout-button {
+  background-color: rgba(0, 0, 0, 0.377);
 }
 
 @keyframes background-color {
@@ -165,6 +173,13 @@
     width: 100vw;
     display: flex;
     justify-content: center;
+
+    .login-button,
+    .logout-button {
+      margin-bottom: 30px;
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 
   .navbar-links.active {

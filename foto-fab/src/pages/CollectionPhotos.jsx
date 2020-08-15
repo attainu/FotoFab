@@ -67,7 +67,7 @@ class CollectionPage extends Component {
       <>
         {photos.length !== 0 ? (
           <div>
-            <h2>Collection Photos</h2>
+            <h2>{this.props.match.params.title}</h2>
             <div className="photo-container">
               {photos.map((image) => (
                 <PhotoCard

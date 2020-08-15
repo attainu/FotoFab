@@ -3,16 +3,15 @@ import "font-awesome/css/font-awesome.min.css";
 import "./styles/mobileNav.scss";
 import { Link, NavLink } from "react-router-dom";
 import ViewProfile from "./ViewProfile";
+import { connect } from "react-redux";
 export class MobileNavigation extends Component {
-  state = {
-    isLoggedIn: false,
-  };
   handleClick = () => {
     console.log("clicked");
   };
+  handleProfile = () => {
+    this.props.history.push(`/profile/${this.props.user.username}`);
+  };
   render() {
-    const { isLoggedIn } = this.state;
-    console.log(isLoggedIn);
     return (
       <div className="mobile-navbar" id="mobile-nav">
         <Link className="home" to="/">
@@ -21,7 +20,7 @@ export class MobileNavigation extends Component {
         {/* <div className="submit-photo" onClick={this.handleClick}>
           <i className="fa fa-plus-square-o" aria-hidden="true"></i>
         </div> */}
-        {!isLoggedIn ? (
+        {!this.props.user ? (
           <NavLink
             to="/login"
             className="main-nav"
@@ -30,11 +29,20 @@ export class MobileNavigation extends Component {
             <button>Login</button>
           </NavLink>
         ) : (
-          <ViewProfile />
+          <ViewProfile
+            profilePic={this.props.user.profile_image.large}
+            handleProfile={this.handleProfile}
+          />
         )}
       </div>
     );
   }
 }
 
-export default MobileNavigation;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userState.userProfile,
+  };
+};
+
+export default connect(mapStateToProps, null)(MobileNavigation);

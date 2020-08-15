@@ -3,6 +3,7 @@ import { NavLink, Link, Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import "./styles/navbar.scss";
 import ViewProfile from "./ViewProfile";
+import logo from "../logo/logo.svg";
 import { connect } from "react-redux";
 import {
   logOutUser,
@@ -17,6 +18,7 @@ class Navbar extends Component {
     isToggled: false,
     loginClicked: false,
     code: null,
+    gotToken: false,
   };
 
   fetchUserLikedPhotos = async (username) => {
@@ -37,12 +39,7 @@ class Navbar extends Component {
     this.setState({ code: query });
     if (this.props.accessTokenData === null) {
       this.props.unsplashLogin(query);
-    } else {
-      this.props.fetchCurrentUserProfile(
-        this.props.accessTokenData.access_token
-      );
     }
-
     if (this.props.user) {
       this.fetchUserLikedPhotos(this.props.user.username);
     }
@@ -83,9 +80,15 @@ class Navbar extends Component {
             <Link
               to="/"
               className="brand-name"
-              style={{ textDecoration: "none", color: "inherit" }}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "flex",
+                alignItems: "center",
+              }}
             >
-              Brand Name
+              <img src={logo} alt="" height="40px" />
+              <p style={{ marginLeft: "10px", fontWeight: "500" }}>Foto-Fab</p>
             </Link>
           </div>
           <div className="toggle-button" onClick={this.handleToggle}>
@@ -128,7 +131,12 @@ class Navbar extends Component {
             </li>
             <li>
               {this.props.accessTokenData ? (
-                <button onClick={() => this.props.logOutUser()}>Logout</button>
+                <button
+                  className="logout-button"
+                  onClick={() => this.props.logOutUser()}
+                >
+                  Logout
+                </button>
               ) : (
                 <a
                   href={`https://unsplash.com/oauth/authorize?&client_id=${key.ACCESS_KEY}&redirect_uri=${key.REDIRECT_URI}&response_type=code&scope=public+read_user+write_user+write_likes+write_collections`}
@@ -146,10 +154,10 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = (storeState) => {
+const mapStateToProps = (state) => {
   return {
-    accessTokenData: storeState.userState.accessTokenData,
-    user: storeState.userState.userProfile,
+    accessTokenData: state.userState.accessTokenData,
+    user: state.userState.userProfile,
   };
 };
 

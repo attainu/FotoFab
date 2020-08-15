@@ -60,6 +60,24 @@
           }
         }
       }
+
+      .view-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        button {
+          font-family: "Montserrat", sans-serif;
+          height: 40px;
+          padding: 10px;
+          font-size: 16px;
+          background-color: green;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+      }
     }
 
     &:hover {

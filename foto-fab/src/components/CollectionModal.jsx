@@ -10,7 +10,9 @@ import {
 class collectionModal extends Component {
   state = {
     content: "",
-    prev: false,
+    create: false,
+    createNew: false,
+    createdCollection: false,
   };
 
   handleChange = (e) => {
@@ -19,8 +21,8 @@ class collectionModal extends Component {
     });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
     const title = this.state.content;
     if (title === "") {
       alert("title required");
@@ -30,13 +32,14 @@ class collectionModal extends Component {
         title,
         this.props.accessTokenData.access_token
       );
+      this.setState({ createdCollection: true });
       this.props.handleDisplay();
       alert("it may take longer to create new collection");
     }
   };
 
-  showPrevCollection = () => {
-    this.setState({ prev: true });
+  createNewCollection = () => {
+    this.setState({ createNew: !this.state.createNew });
   };
 
   handleAdd = (colId, id, access_token) => {
@@ -44,6 +47,35 @@ class collectionModal extends Component {
     this.props.handleDisplay();
     alert("it may take longer to add your photos to this collection");
   };
+
+  // componentDidMount() {
+  //   if (this.state.createdCollection) {
+  //     if (this.props.newCollection) {
+  //       this.handleAdd(
+  //         this.props.newCollection[0].id,
+  //         this.props.id,
+  //         this.props.accessTokenData.access_token
+  //       );
+  //       // this.setState({ createdCollection: false });
+  //     } else {
+  //       alert("collection is created but unable to add photo");
+  //     }
+  //   }
+  // }
+  componentDidUpdate() {
+    if (this.state.createdCollection) {
+      if (this.props.newCollection) {
+        this.handleAdd(
+          this.props.newCollection[0].id,
+          this.props.id,
+          this.props.accessTokenData.access_token
+        );
+        this.setState({ createdCollection: false });
+      } else {
+        alert("collection is created but unable to add photo");
+      }
+    }
+  }
 
   render() {
     return (
@@ -53,47 +85,66 @@ class collectionModal extends Component {
           display: `${this.props.display}`,
         }}
       >
-        {!this.state.prev ? (
+        {!this.state.createNew ? (
           <>
-            <form>
-              <label>
-                Create New Collection
+            <p>Add photo to Existing collections</p>
+            <ul>
+              {!this.props.collection ? (
+                <p>NO COLLECTIONS CREATED YET</p>
+              ) : (
+                this.props.collection.map((col) => (
+                  <li
+                    key={col.id}
+                    onClick={() =>
+                      this.handleAdd(
+                        col.id,
+                        this.props.id,
+                        this.props.accessTokenData.access_token
+                      )
+                    }
+                  >
+                    <button>{col.title}</button>
+                  </li>
+                ))
+              )}
+            </ul>
+            {/* <p className="or">OR</p>
+            <p className="create">
+              <button onClick={this.createNewCollection}>
+                create a new collection
+              </button>
+            </p>
+            <p className="note">
+              * but Remember that it may take longer to create a collection, and
+              created collection will not contain any images at first. After
+              creating collection you can add images to it. *
+            </p> */}
+          </>
+        ) : (
+          <>
+            <form className="create-new-collection">
+              <p>Create New Collection</p>
+              <div>
                 <input
                   type="text"
                   name="content"
                   value={this.state.content}
                   onChange={this.handleChange}
                 />
-                <button onClick={this.handleSubmit}>ADD</button>
-              </label>
+                <button onClick={this.handleSubmit}>CREATE</button>
+              </div>
             </form>
-            <button onClick={this.showPrevCollection}>
+            <p className="or">OR</p>
+            <button className="add-in-old" onClick={this.createNewCollection}>
               Add in Existing Collection
             </button>
           </>
-        ) : (
-          <ul>
-            {!this.props.collection ? (
-              <p>NO COLLECTIONS AVAILABLE</p>
-            ) : (
-              this.props.collection.map((col) => (
-                <li
-                  key={col.id}
-                  onClick={() =>
-                    this.handleAdd(
-                      col.id,
-                      this.props.id,
-                      this.props.accessTokenData.access_token
-                    )
-                  }
-                >
-                  {col.title}
-                </li>
-              ))
-            )}
-          </ul>
         )}
-        <button onClick={() => this.props.handleDisplay()}>Cancel</button>
+
+        {/* )} */}
+        <button className="cancel" onClick={() => this.props.handleDisplay()}>
+          Cancel
+        </button>
       </div>
     );
   }
@@ -103,6 +154,7 @@ const mapStateToProps = (state) => {
   return {
     collection: state.currentUserState.collections,
     accessTokenData: state.userState.accessTokenData,
+    newCollection: state.userState.newCollection,
   };
 };
 

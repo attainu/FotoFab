@@ -13,7 +13,7 @@ class Collection extends Component {
     console.log(collection);
     return (
       <div className="collection-card">
-        <Link to={`/collection/${collection.id}`}>
+        <Link to={`/collection/${collection.id}/${collection.title}`}>
           {!preview_photos ? null : preview_photos.length >= 3 ? (
             <>
               <div className="collection-grid-1">

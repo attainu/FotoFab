@@ -90,3 +90,6 @@ export const DATA_FETCHED = "DATA_FETCHED";
 
 //create a new collection
 export const CREATE_A_NEW_COLLECTION = "CREATE_A_NEW_COLLECTION";
+
+//Edit Profile (first_name, last_name, bio)
+export const EDIT_PROFILE = "EDIT_PROFILE";
