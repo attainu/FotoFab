@@ -11,6 +11,7 @@ import {
   fetchCurrentUserProfile,
 } from "../redux/actions/userAction";
 import { showCreateCollectionModal } from "../redux/actions/currentUserAction";
+import { showLogoutModal } from "../redux/actions/currentUserAction";
 
 import axios from "axios";
 import { key } from "../config";
@@ -139,7 +140,7 @@ class Navbar extends Component {
               {this.props.accessTokenData ? (
                 <button
                   className="logout-button"
-                  onClick={() => this.props.logOutUser()}
+                  onClick={() => this.props.showLogoutModal()}
                 >
                   Logout
                 </button>
@@ -174,4 +175,5 @@ export default connect(mapStateToProps, {
   unsplashLogin,
   fetchCurrentUserProfile,
   showCreateCollectionModal,
+  showLogoutModal,
 })(withRouter(Navbar));

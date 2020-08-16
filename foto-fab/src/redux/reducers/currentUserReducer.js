@@ -10,6 +10,7 @@ import {
   SHOW_CREATE_COLLECTION,
   SHOW_ADD_MODAL,
   LOGIN_MODAL,
+  LOGOUT_MODAL,
 } from "../actionType";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   dataFetched: false,
   showModal: false,
   showAlert: false,
+  showLogoutAlert: false,
   addModal: false,
 };
 
@@ -86,6 +88,11 @@ const currentUserReducer = (state = initialState, action) => {
       return {
         ...state,
         showAlert: !state.showAlert,
+      };
+    case LOGOUT_MODAL:
+      return {
+        ...state,
+        showLogoutAlert: !state.showLogoutAlert,
       };
     default: {
       return state;

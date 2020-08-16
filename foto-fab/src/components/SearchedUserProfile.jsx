@@ -4,6 +4,7 @@ class SearchedUserProfile extends Component {
   handleProfile = () => {
     this.props.history.push(`/public/${this.props.user.username}`);
   };
+
   render() {
     const { user } = this.props;
     return (

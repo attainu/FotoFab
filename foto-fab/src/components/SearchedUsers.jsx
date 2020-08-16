@@ -10,6 +10,28 @@ class SearchedUsers extends Component {
     page_no: 1,
     searchQuery: "",
   };
+  handleScroll = () => {
+    const windowHeight =
+      "innerHeight" in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight) {
+      console.log("bottom reached");
+      this.setState({ ...this.state, page_no: this.state.page_no + 1 });
+    } else {
+      console.log("bottom not reached");
+    }
+  };
   componentDidMount() {
     this.props.emptyUsers();
     this.props.searchUser(
@@ -17,8 +39,20 @@ class SearchedUsers extends Component {
       this.props.match.params.searchQuery
     );
     this.setState({ searchQuery: this.props.match.params.searchQuery });
+    window.addEventListener("scroll", this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
   componentDidUpdate(prevProp, prevState) {
+    if (prevState.page_no < this.state.page_no) {
+      this.props.searchUser(
+        this.state.page_no,
+        this.props.match.params.searchQuery
+      );
+    } else {
+      console.log("not updating");
+    }
     if (this.props.match.params.searchQuery !== this.state.searchQuery) {
       this.props.emptyUsers();
       this.props.searchUser(

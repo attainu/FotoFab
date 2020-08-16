@@ -20,7 +20,9 @@ class SearchBar extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push(`/search/${this.state.searchQuery}`);
+    if (this.state.searchQuery) {
+      this.props.history.push(`/search/${this.state.searchQuery}`);
+    }
   };
 
   handleProfile = () => {
