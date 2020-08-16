@@ -1,10 +1,34 @@
+.container
+{
+  display: flex;
+  height: 100vh;
 .about-page {
+  width: 50%;
   display: flex;
   font-family: "Montserrat", sans-serif;
 }
-
+.ab
+{
+  width: 50%;
+    .ab-img
+    {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+}
 @media (max-width: 768px) {
+  .container
+  {
+    flex-direction: column;
   .about-page {
+    width: 100%;
     flex-direction: column;
   }
+  .ab
+  {
+    width:100%;
+  }
+}
 }

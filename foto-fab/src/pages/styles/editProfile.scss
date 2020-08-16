@@ -1,164 +1,170 @@
 .edit-profile {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow-x: hidden;
-  h1 {
-    margin-bottom: 30px;
-    margin-top: 20px;
-    margin-left: 20px;
-    color: rgba(0, 0, 0, 0.603);
-  }
-
-  .main-profile-container {
-    display: flex;
-
-    .illustration {
-      margin-right: 40px;
-
-      img {
-        width: 50vw;
-      }
-    }
-  }
-
-  .edit-form-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    background-image: linear-gradient(-225deg, #CBBACC 0%, #2580B3 100%);
 
-    label {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 20px;
-      font-size: 20px;
-      color: rgba(0, 0, 0, 0.651);
-      font-weight: 500;
-
-      input {
-        height: 50px;
-        font-size: 18px;
-        padding-left: 10px;
-        margin-top: 10px;
-        width: 400px;
-        outline-color: green;
-        border-radius: 5px;
-        border: none;
-        border: 2px solid rgba(0, 0, 0, 0.411);
-      }
-
-      textarea {
-        width: 400px;
-        font-size: 18px;
-        padding: 10px;
-        margin-top: 10px;
-        font-family: "Montserrat", sans-serif;
-        outline-color: #008000;
-        border-radius: 5px;
-        border: 2px solid rgba(0, 0, 0, 0.411);
-        resize: none;
-      }
+    h1 {
+        margin-bottom: 30px;
+        margin-top: 80px;
+        margin-left: 20px;
+        color: rgba(0, 0, 0, 0.603);
     }
 
-    .buttons {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+    .main-profile-container {
+        display: flex;
+
+        .illustration {
+            margin-right: 40px;
+
+            img {
+                width: 50vw;
+            }
+        }
     }
 
-    button {
-      font-family: "Montserrat", sans-serif;
-      height: 50px;
-      padding: 0 20px;
-      font-size: 18px;
-      width: 150px;
-      font-weight: 500;
-      margin-top: 40px;
-      background-color: green;
-      border: none;
-      outline: none;
-      color: #fff;
-      border-radius: 5px;
-      cursor: pointer;
+    .edit-form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-      &:hover {
-        background-color: rgb(50, 155, 50);
-      }
+        label {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.651);
+            font-weight: 500;
+
+            input {
+                height: 50px;
+                font-size: 18px;
+                padding-left: 10px;
+                margin-top: 10px;
+                width: 400px;
+                outline-color: green;
+                border-radius: 5px;
+                border: none;
+                border: 2px solid rgba(0, 0, 0, 0.411);
+            }
+
+            textarea {
+                width: 400px;
+                font-size: 18px;
+                padding: 10px;
+                margin-top: 10px;
+                font-family: "Montserrat", sans-serif;
+                outline-color: #008000;
+                border-radius: 5px;
+                border: 2px solid rgba(0, 0, 0, 0.411);
+                resize: none;
+            }
+        }
+
+        .buttons {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+        }
+
+        button {
+            font-family: "Montserrat", sans-serif;
+            height: 50px;
+            padding: 0 20px;
+            font-size: 18px;
+            width: 150px;
+            font-weight: 500;
+            margin-top: 40px;
+            background-color: green;
+            border: none;
+            outline: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(50, 155, 50);
+            }
+        }
+
+        .cancel {
+            background-color: rgb(170, 167, 167);
+
+            &:hover {
+                background-color: rgb(134, 133, 133);
+            }
+        }
     }
-
-    .cancel {
-      background-color: rgb(170, 167, 167);
-
-      &:hover {
-        background-color: rgb(134, 133, 133);
-      }
-    }
-  }
 }
 
 @media (max-width: 900px) {
-  .edit-profile {
-    .main-profile-container {
-      width: 100vw;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    .edit-profile {
 
-      .illustration {
-        margin: 0;
-      }
+        .main-profile-container {
+            width: 100vw;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-      .edit-form-container {
-        width: 90vw;
+            .illustration {
+                margin: 0;
+            }
 
-        input,
-        textarea {
-          width: 300px;
+            .edit-form-container {
+                width: 90vw;
+
+                input,
+                textarea {
+                    width: 300px;
+                }
+
+                .buttons {
+                    width: 300px;
+
+                    button {
+                        padding: 0;
+                        margin-right: 20px;
+                    }
+                }
+            }
         }
-
-        .buttons {
-          width: 300px;
-
-          button {
-            padding: 0;
-            margin-right: 20px;
-          }
-        }
-      }
     }
-  }
 }
 
 @media (max-width: 320px) {
-  .edit-profile {
-    .main-profile-container {
-      width: 100vw;
-      flex-direction: column;
-      justify-content: center;
+    .edit-profile {
 
-      .illustration {
-        margin: 0;
-      }
+        .main-profile-container {
+            width: 100vw;
+            flex-direction: column;
+            justify-content: center;
 
-      .edit-form-container {
-        width: 90vw;
+            .illustration {
+                margin: 0;
+            }
 
-        input,
-        textarea {
-          width: 250px;
+            .edit-form-container {
+                width: 90vw;
+
+                input,
+                textarea {
+                    width: 250px;
+                }
+
+                .buttons {
+                    width: 250px;
+
+                    button {
+                        padding: 0;
+                        font-size: 14px;
+                        margin-right: 20px;
+                    }
+                }
+            }
         }
-
-        .buttons {
-          width: 250px;
-
-          button {
-            padding: 0;
-            font-size: 14px;
-            margin-right: 20px;
-          }
-        }
-      }
     }
-  }
 }

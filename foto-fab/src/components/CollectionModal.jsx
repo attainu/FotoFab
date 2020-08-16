@@ -85,31 +85,30 @@ class collectionModal extends Component {
           display: `${this.props.display}`,
         }}
       >
-        <div className="collection-form-main">
-          {!this.state.createNew ? (
-            <>
-              <p>Add photo to Existing collections</p>
-              <ul>
-                {!this.props.collection ? (
-                  <p>NO COLLECTIONS CREATED YET</p>
-                ) : (
-                  this.props.collection.map((col) => (
-                    <li
-                      key={col.id}
-                      onClick={() =>
-                        this.handleAdd(
-                          col.id,
-                          this.props.id,
-                          this.props.accessTokenData.access_token
-                        )
-                      }
-                    >
-                      <button>{col.title}</button>
-                    </li>
-                  ))
-                )}
-              </ul>
-              {/* <p className="or">OR</p>
+        {!this.state.createNew ? (
+          <>
+            <p>Add photo to Existing collections</p>
+            <ul>
+              {!this.props.collection ? (
+                <p>NO COLLECTIONS CREATED YET</p>
+              ) : (
+                this.props.collection.map((col) => (
+                  <li
+                    key={col.id}
+                    onClick={() =>
+                      this.handleAdd(
+                        col.id,
+                        this.props.id,
+                        this.props.accessTokenData.access_token
+                      )
+                    }
+                  >
+                    <button>{col.title}</button>
+                  </li>
+                ))
+              )}
+            </ul>
+            {/* <p className="or">OR</p>
             <p className="create">
               <button onClick={this.createNewCollection}>
                 create a new collection
@@ -120,32 +119,32 @@ class collectionModal extends Component {
               created collection will not contain any images at first. After
               creating collection you can add images to it. *
             </p> */}
-            </>
-          ) : (
-            <>
-              <form className="create-new-collection">
-                <p>Create New Collection</p>
-                <div>
-                  <input
-                    type="text"
-                    name="content"
-                    value={this.state.content}
-                    onChange={this.handleChange}
-                  />
-                  <button onClick={this.handleSubmit}>CREATE</button>
-                </div>
-              </form>
-              <p className="or">OR</p>
-              <button className="add-in-old" onClick={this.createNewCollection}>
-                Add in Existing Collection
-              </button>
-            </>
-          )}
-          {/* )} */}
-          <button className="cancel" onClick={() => this.props.handleDisplay()}>
-            Cancel
-          </button>
-        </div>
+          </>
+        ) : (
+          <>
+            <form className="create-new-collection">
+              <p>Create New Collection</p>
+              <div>
+                <input
+                  type="text"
+                  name="content"
+                  value={this.state.content}
+                  onChange={this.handleChange}
+                />
+                <button onClick={this.handleSubmit}>CREATE</button>
+              </div>
+            </form>
+            <p className="or">OR</p>
+            <button className="add-in-old" onClick={this.createNewCollection}>
+              Add in Existing Collection
+            </button>
+          </>
+        )}
+
+        {/* )} */}
+        <button className="cancel" onClick={() => this.props.handleDisplay()}>
+          Cancel
+        </button>
       </div>
     );
   }

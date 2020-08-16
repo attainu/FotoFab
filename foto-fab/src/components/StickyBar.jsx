@@ -21,41 +21,55 @@ class StickyBar extends Component {
 
   render() {
     return (
-      <div class="sticky-container">
-        <ul class="sticky">
+      <div class='sticky-container'>
+        <ul class='sticky'>
           <li>
             {" "}
-            <img width="32" height="32" title="" alt="" src={ff} />
+            <img width='32' height='32' title='' alt='' src={ff} />
             <p>Foto Fab</p>
           </li>
           <li onClick={this.handleAboutUs}>
             {" "}
-            <img width="32" height="32" title="" alt="" src={gr} />
+            <img width='32' height='32' title='' alt='' src={gr} />
             <p>About Us</p>
           </li>
           <li onClick={this.handleContactUs}>
             {" "}
-            <img width="32" height="32" title="" alt="" src={con} />
+            <img width='32' height='32' title='' alt='' src={con} />
             <p>Contact</p>
           </li>
           <li>
             {" "}
-            <img width="32" height="32" title="" alt="fb" src={fb} />
-            <p>Facebook</p>
+            <a
+              href='https://www.facebook.com/Foto-fab-247784806339014'
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <img width='32' height='32' title='' alt='fb' src={fb} />
+              <p>Facebook</p>
+            </a>
           </li>
           <li>
             {" "}
-            <img width="32" height="32" title="" alt="tw" src={tw} />
-            <p>Twitter</p>
+            <a
+              href='https://twitter.com/FotoFab1'
+              style={{ textDecoration: "none", color: "white" }}
+            >
+            <img width='32' height='32' title='' alt='tw' src={tw} />
+            <p>Twitter</p></a>
           </li>
           <li>
             {" "}
-            <img width="32" height="32" title="" alt="pin1" src={pin} />
-            <p>Pinterest</p>
+            <a
+              href='https://www.pinterest.com.mx/pin/791366965767506177'
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <img width='32' height='32' title='' alt='pin1' src={pin} />
+              <p>Pinterest</p>
+            </a>
           </li>
           <li>
             {" "}
-            <img width="32" height="32" title="" alt="li" src={li} />
+            <img width='32' height='32' title='' alt='li' src={li} />
             <p>Linkedin</p>
           </li>
         </ul>

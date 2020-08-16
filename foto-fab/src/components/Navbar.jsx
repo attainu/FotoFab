@@ -10,8 +10,6 @@ import {
   unsplashLogin,
   fetchCurrentUserProfile,
 } from "../redux/actions/userAction";
-import { showCreateCollectionModal } from "../redux/actions/currentUserAction";
-import { showLogoutModal } from "../redux/actions/currentUserAction";
 
 import axios from "axios";
 import { key } from "../config";
@@ -105,28 +103,23 @@ class Navbar extends Component {
             <li>
               <NavLink
                 className="main-nav"
-                activeClassName="main-nav-active active"
-                to="/about"
+                activeClassName="main-nav-active"
+                exact to="/"
               >
-                About
+                Home
               </NavLink>
             </li>
             <li>
               <NavLink
                 className="main-nav"
-                activeClassName="main-nav-active active"
-                to="/"
+                activeClassName="main-nav-active"
+                exact to="/about"
               >
-                Home
+                About
               </NavLink>
             </li>
             {/* <li>
-              <button
-                onClick={() => this.props.showCreateCollectionModal()}
-                className="button"
-              >
-                Create collection
-              </button>
+              <button className="button">Submit a photo</button>
             </li> */}
             <li>
               {this.props.user ? (
@@ -140,20 +133,21 @@ class Navbar extends Component {
               {this.props.accessTokenData ? (
                 <button
                   className="logout-button"
-                  onClick={() => this.props.showLogoutModal()}
+                  onClick={() => this.props.logOutUser()}
                 >
                   Logout
                 </button>
               ) : (
-                <NavLink
-                  className="main-nav"
-                  activeClassName="main-nav-active active"
-                  to="/login"
-                >
-                  <button onClick={this.handleLogin} className="login-button">
+                // <a
+                //   href={`https://unsplash.com/oauth/authorize?&client_id=${key.ACCESS_KEY}&redirect_uri=${key.REDIRECT_URI}&response_type=code&scope=public+read_user+write_user+write_likes+write_collections`}
+                // >
+                //   <button onClick={this.handleLogin} className="login-button">
+                //     Login
+                //   </button>
+                // </a>
+                <Link to="/login"><button onClick={this.handleLogin} className="login-button">
                     Login
-                  </button>
-                </NavLink>
+                   </button></Link>
               )}
             </li>
           </ul>
@@ -174,6 +168,6 @@ export default connect(mapStateToProps, {
   logOutUser,
   unsplashLogin,
   fetchCurrentUserProfile,
-  showCreateCollectionModal,
-  showLogoutModal,
 })(withRouter(Navbar));
+
+//TODO: background: photo of the day

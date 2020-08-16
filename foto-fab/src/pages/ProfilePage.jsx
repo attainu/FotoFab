@@ -6,8 +6,8 @@ import { fetchLocation } from "../redux/actions/fetchCoordinates";
 // import UserProfile from "../components/UserProfile";
 import "./styles/publicUser.scss";
 
-// import axios from "axios";
-// import { key } from "../config";
+import axios from "axios";
+import { key } from "../config";
 
 import { emptyImages } from "../redux/actions/searchPhotosAction";
 
@@ -22,7 +22,7 @@ import {
   fetchCurrentUserLikedPhotos,
   fetchCurrentUserCollections,
 } from "../redux/actions/currentUserAction";
-
+import Axios from "axios";
 import CurrentUserProfile from "../components/currentUser/Profile";
 class ProfilePage extends Component {
   state = {
@@ -39,16 +39,16 @@ class ProfilePage extends Component {
     lng: "",
   };
 
-  // fetchUserLikedPhotos = async (username) => {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `https://api.unsplash.com/users/${username}/likes/?client_id=${key.ACCESS_KEY}`
-  //     );
-  //     console.log(data);
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
-  // };
+  fetchUserLikedPhotos = async (username) => {
+    try {
+      const { data } = await axios.get(
+        `https://api.unsplash.com/users/${username}/likes/?client_id=${key.ACCESS_KEY}`
+      );
+      console.log(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   componentDidMount() {
     this.props.emptyImages();
@@ -62,9 +62,9 @@ class ProfilePage extends Component {
     this.props.fetchCurrentUserCollections(username);
 
     //checking-----
-    // if (this.props.user) {
-    //   this.fetchUserLikedPhotos(this.props.user.username);
-    // }
+    if (this.props.user) {
+      this.fetchUserLikedPhotos(this.props.user.username);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

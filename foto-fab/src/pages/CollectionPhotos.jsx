@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from "../components/Navbar";
 import MobileNavigation from "../components/mobileNavigation";
 import { connect } from "react-redux";
 import { fetchCollectionPhotos } from "../redux/actions/collectionPhoto";
@@ -6,8 +7,7 @@ import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
 import { emptyImages } from "../redux/actions/searchPhotosAction";
-import "./styles/collectionPhotos.scss";
-import { Spring } from "react-spring/renderprops";
+
 class CollectionPage extends Component {
   state = {
     page_no: 1,
@@ -67,17 +67,7 @@ class CollectionPage extends Component {
       <>
         {photos.length !== 0 ? (
           <div>
-            <Spring
-              from={{ opacity: 0, marginLeft: -1500 }}
-              to={{ opacity: 1, marginLeft: 0 }}
-              config={{ delay: 1000 }}
-            >
-              {(props) => (
-                <div style={props} className="collection-title">
-                  <h2>{this.props.match.params.title}</h2>
-                </div>
-              )}
-            </Spring>
+            <h2>{this.props.match.params.title}</h2>
             <div className="photo-container">
               {photos.map((image) => (
                 <PhotoCard

@@ -7,23 +7,15 @@ import {
   LIKE_PHOTO,
   UNLIKE_PHOTO,
   DATA_FETCHED,
-  SHOW_CREATE_COLLECTION,
-  SHOW_ADD_MODAL,
-  LOGIN_MODAL,
-  LOGOUT_MODAL,
 } from "../actionType";
 
 const initialState = {
-  likedPhotos: null,
+  likedPhotos: [],
   isLikedPhotoLoading: false,
-  collections: null,
+  collections: [],
   isCollectionLoading: false,
   localLikes: JSON.parse(localStorage.getItem("localLikes")) || [],
   dataFetched: false,
-  showModal: false,
-  showAlert: false,
-  showLogoutAlert: false,
-  addModal: false,
 };
 
 const currentUserReducer = (state = initialState, action) => {
@@ -73,26 +65,6 @@ const currentUserReducer = (state = initialState, action) => {
       return {
         ...state,
         localLikes: newUpdate,
-      };
-    case SHOW_CREATE_COLLECTION:
-      return {
-        ...state,
-        showModal: !state.showModal,
-      };
-    case SHOW_ADD_MODAL:
-      return {
-        ...state,
-        addModal: !state.addModal,
-      };
-    case LOGIN_MODAL:
-      return {
-        ...state,
-        showAlert: !state.showAlert,
-      };
-    case LOGOUT_MODAL:
-      return {
-        ...state,
-        showLogoutAlert: !state.showLogoutAlert,
       };
     default: {
       return state;

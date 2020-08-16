@@ -1,5 +1,5 @@
 .profile-container {
-  padding-top: 50px;
+  padding-top: 100px;
   width: 100%;
 
   .all-bio {
@@ -75,6 +75,8 @@
             background-color: rgba(0, 0, 0, 0.698);
           }
         }
+
+
 
         .message {
           background-color: black;
@@ -209,19 +211,9 @@
       }
     }
   }
-}
 
-.link-div {
-  margin: 10px;
-  .link {
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.513);
-    font-weight: 600;
-    &:hover {
-      color: black;
-    }
-  }
-  .active {
-    color: black;
-  }
+  //   .location-portfolio-bio {
+  //     display: flex;
+  //     flex-direction: column;
+  //   }
 }

@@ -6,7 +6,6 @@ import {
   LIKE_A_PHOTO,
   LIKE_PHOTO,
   CREATE_A_NEW_COLLECTION,
-  SHOW_CREATE_COLLECTION,
 } from "../actionType";
 import axios from "axios";
 import { key } from "../../config";
