@@ -1,10 +1,13 @@
 import axios from "axios";
-import { SET_PHOTOS,DEL_PHOTOS, TOGGLE_PHOTO_FETCHING_STATE } from "../actionType";
+import {
+  SET_PHOTOS,
+  DEL_PHOTOS,
+  TOGGLE_PHOTO_FETCHING_STATE,
+} from "../actionType";
 import { key } from "../../config";
 
 export const emptyImages = () => async (dispatch) => {
-  dispatch({ type: DEL_PHOTOS, payload:null });
-  
+  dispatch({ type: DEL_PHOTOS, payload: null });
 };
 export const fetchPopularPhotos = () => async (dispatch) => {
   try {
@@ -36,18 +39,3 @@ export const fetchImages = (page_no) => async (dispatch) => {
     dispatch({ type: TOGGLE_PHOTO_FETCHING_STATE });
   }
 };
-
-// fetchImages = () => {
-//   axios
-//     .get(
-//       `https://api.unsplash.com/photos?page=${this.state.page_no}&client_id=${key.ACCESS_KEY}`
-//     )
-//     .then((res) => {
-//       // console.log(res)
-//       this.setState({
-//         ...this.state,
-//         images: [...this.state.images, ...res.data],
-//       });
-//     });
-// };
-//https://api.unsplash.com/photos/?client_id=YOUR_ACCESS_KEY

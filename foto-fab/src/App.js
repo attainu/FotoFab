@@ -14,16 +14,19 @@ import ContactUs from "./pages/ContactUsPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { connect } from "react-redux";
 import LoginPage from "./pages/LoginPage";
+import AlertModal from "./components/AlertModal";
+import SearchedUsers from "./components/SearchedUsers";
 
 function App({ user }) {
   return (
     <BrowserRouter>
       <Navbar />
+      <AlertModal />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/signUp" component={SignUpPage} />
-        <Route exact path="/profile/:username" component={ProfilePage} />
-        <Route exact path="/search/:searchQuery" component={SearchPage} />
+        <Route path="/profile/:username" component={ProfilePage} />
+        <Route path="/search/:searchQuery" component={SearchPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/contact" component={ContactUs} />
         <Route exact path="/collection/:id/:title" component={CollectionPage} />
@@ -35,11 +38,7 @@ function App({ user }) {
           component={EditProfile}
           loggedIn={user}
         />
-        <Route
-          exact
-          path="/public/:username"
-          component={PublicUserProfilePage}
-        />
+        <Route path="/public/:username" component={PublicUserProfilePage} />
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>

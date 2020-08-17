@@ -1,11 +1,7 @@
 import {
-  LOG_IN,
-  REGISTER,
   LOGOUT,
-  TOGGLE_AUTH_STATE,
   UNSPLASH_LOGIN,
   SET_USER_PROFILE,
-  LIKE_PHOTO,
   CREATE_A_NEW_COLLECTION,
 } from "../actionType";
 

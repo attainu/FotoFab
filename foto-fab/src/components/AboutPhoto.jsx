@@ -17,9 +17,9 @@ class AboutPhoto extends Component {
         >
           {(props) => (
             <div style={props}>
-              <div className='login-photo'>
+              <div className="login-photo">
                 <div
-                  className='login-photo-container'
+                  className="login-photo-container"
                   style={{
                     backgroundImage: `url(${image})`,
                     backgroundPosition: "center",
@@ -27,11 +27,11 @@ class AboutPhoto extends Component {
                     backgroundSize: "cover",
                   }}
                 >
-                  <div className='info'>
-                    <div className='logo-area'>
+                  <div className="info">
+                    <div className="logo-area">
                       <Link
-                        to='/'
-                        className='brand-name'
+                        to="/"
+                        className="brand-name"
                         style={{
                           textDecoration: "none",
                           color: "inherit",
@@ -41,7 +41,7 @@ class AboutPhoto extends Component {
                           marginTop: "20px",
                         }}
                       >
-                        <img src={logo} alt='' height='70px' />
+                        <img src={logo} alt="" height="70px" />
                       </Link>
                     </div>
                     <Spring
@@ -50,29 +50,13 @@ class AboutPhoto extends Component {
                       config={{ delay: 1000 }}
                     >
                       {(props) => (
-                        <div style={props} className='info-para'>
+                        <div style={props} className="info-para">
                           <div>
                             <h1>Creation Starts Here</h1>
                             <p>Access free, high resolution photos</p>
                             <p> Get inspired, Give inspiration</p>
                           </div>
-                          <StickyBar></StickyBar>
-                          <Spring
-                            from={{ opacity: 1, marginTop: -500 }}
-                            to={{ opacity: 1, marginTop: 0 }}
-                            config={{ delay: 1500 }}
-                          >
-                            {(props) => (
-                              <div className='down-arrow' style={props}>
-                                <div>
-                                  <span>Join</span>
-                                </div>
-                                <a className='circle' href='#signIn'>
-                                  <img src={arrow} alt='down arrow' />
-                                </a>
-                              </div>
-                            )}
-                          </Spring>
+                          <StickyBar />
                         </div>
                       )}
                     </Spring>
@@ -82,7 +66,6 @@ class AboutPhoto extends Component {
             </div>
           )}
         </Spring>
-        
       </>
     );
   }

@@ -6,6 +6,10 @@ import {
   LIKE_PHOTO,
   UNLIKE_PHOTO,
   DATA_FETCHED,
+  LOGIN_MODAL,
+  SHOW_CREATE_COLLECTION,
+  SHOW_ADD_MODAL,
+  LOGOUT_MODAL,
 } from "../actionType";
 import axios from "axios";
 import { key } from "../../config";
@@ -60,9 +64,28 @@ export const removePictureLocally = (id) => {
   };
 };
 
-// export const dataFetched = () => {
-//   console.log("checking data fetched or not");
-//   return {
-//     type: DATA_FETCHED,
-//   };
-// };
+//SHOW CREATE COLLECTION MODAL
+export const showCreateCollectionModal = () => {
+  return {
+    type: SHOW_CREATE_COLLECTION,
+  };
+};
+
+export const showAlertModal = () => {
+  return {
+    type: LOGIN_MODAL,
+  };
+};
+
+export const showLogoutModal = () => {
+  return {
+    type: LOGOUT_MODAL,
+  };
+};
+
+//Show add to collection modal
+export const showAddToCollectionModal = () => {
+  return {
+    type: SHOW_ADD_MODAL,
+  };
+};

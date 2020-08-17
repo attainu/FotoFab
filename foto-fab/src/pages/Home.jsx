@@ -5,7 +5,6 @@ import { fetchImages, emptyImages } from "../redux/actions/fetchPhotosAction";
 import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
-import Loader from "./Loader";
 import MobileNavigation from "../components/mobileNavigation";
 import Navbar from "../components/Navbar";
 import StickyBar from "../components/StickyBar";
@@ -61,8 +60,6 @@ class Home extends Component {
         this.props.accessTokenData.access_token
       );
     }
-
-    console.log(this.props.user);
   };
 
   render() {
@@ -84,7 +81,6 @@ class Home extends Component {
           </div>
         ) : (
           <Spinner />
-          // <Loader />
         )}
         <MobileNavigation />
       </>

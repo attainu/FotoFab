@@ -10,7 +10,7 @@ import {
 } from "../redux/actions/currentUserAction";
 
 import CollectionModal from "./CollectionModal";
-
+import { showAlertModal } from "../redux/actions/currentUserAction";
 class PhotoCard extends Component {
   state = {
     liked: false,
@@ -36,8 +36,7 @@ class PhotoCard extends Component {
         this.setState({ display: "none" });
       }
     } else {
-      alert("please login for creating collection");
-      this.props.history.push("/");
+      this.props.showAlertModal();
     }
   };
 
@@ -51,8 +50,8 @@ class PhotoCard extends Component {
 
   //TODO: redirect to login page if not a user
   handleLike = () => {
-    this.setState({ liked: !this.state.liked });
-    if (this.props.accessTokenData !== null) {
+    if (this.props.user && this.props.accessTokenData !== null) {
+      this.setState({ liked: !this.state.liked });
       if (!this.state.liked) {
         this.props.likeAPhoto(
           this.props.photo.id,
@@ -71,8 +70,7 @@ class PhotoCard extends Component {
         this.setState({ liked: false });
       }
     } else {
-      alert("please login for liking a photo");
-      this.props.history.push("/");
+      this.props.showAlertModal();
     }
   };
 
@@ -151,6 +149,7 @@ const mapStateToProps = (state) => {
     accessTokenData: state.userState.accessTokenData,
     userLikedPhotos: state.currentUserState.likedPhotos,
     localLikes: state.currentUserState.localLikes,
+    user: state.userState.userProfile,
   };
 };
 
@@ -159,4 +158,5 @@ export default connect(mapStateToProps, {
   unlikeAPhoto,
   likePictureLocally,
   removePictureLocally,
+  showAlertModal,
 })(withRouter(PhotoCard));

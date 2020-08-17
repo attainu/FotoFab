@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchDetailPhotos } from "../redux/actions/detailPhoto";
+import {
+  fetchDetailPhotos,
+  fetchStatistics,
+} from "../redux/actions/detailPhoto";
 import Spinner from "../components/Spinner";
 import MobileNavigation from "../components/mobileNavigation";
 import axios from "axios";
@@ -10,9 +13,13 @@ import "./styles/detailPage.scss";
 import { fetchLocation } from "../redux/actions/fetchCoordinates";
 import Modal from "../components/Modal";
 class DetailPage extends Component {
+  state = {
+    liked: false,
+  };
   container = React.createRef();
   state = {
     show: false,
+    liked: false,
     lat: "",
     lng: "",
     open: false,
@@ -42,10 +49,12 @@ class DetailPage extends Component {
     console.log(this.props.match.params.id);
     document.addEventListener("mousedown", this.handleClickOutside);
     this.props.fetchDetailPhotos(this.props.match.params.id);
+    this.props.fetchStatistics(this.props.match.params.id);
   }
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.handleClickOutside);
   }
+
   handleClickOutside = (event) => {
     if (
       this.container.current &&
@@ -56,6 +65,7 @@ class DetailPage extends Component {
       });
     }
   };
+
   handleButtonClick = () => {
     this.setState((state) => {
       return {
@@ -202,23 +212,23 @@ class DetailPage extends Component {
                         <p className="location" onClick={this.showModal}>
                           {photo.location.name}
                         </p>
-                        {!this.props.location ? null : (
+                        {!this.props.loca ? null : (
                           <Modal
                             show={this.state.show}
                             handleClose={this.hideModal}
                           >
                             <p>Map</p>
-                            <p>{this.props.location.lat}</p>
-                            <p>{this.props.location.lng}</p>
+                            <p>{this.props.loca.lat}</p>
+                            <p>{this.props.loca.lng}</p>
                           </Modal>
                         )}
                       </>
                     )}
                   </div>
                 </div>
+
                 <div className="download">
-                  {/* <button onClick={this.handleDownload}>Download Image</button> */}
-                  <div className="container" ref={this.container}>
+                  <div className="button-container" ref={this.container}>
                     <button
                       type="button"
                       class="button"
@@ -227,7 +237,7 @@ class DetailPage extends Component {
                       {this.state.dval}
                     </button>
                     {this.state.open && (
-                      <div class="container">
+                      <div className="container">
                         <ul
                           style={{
                             display: "flex",
@@ -281,8 +291,30 @@ class DetailPage extends Component {
                 ))}
               </div>
               <div className="description">
-                {!photo.description ? null : <p>{photo.description}</p>}
+                {!photo.description ? null : (
+                  <>
+                    <h3>Caption </h3>
+                    <p>{photo.description}</p>
+                  </>
+                )}
               </div>
+              {this.props.stat && (
+                <div className="image-statistics">
+                  <h3>Image Statistics</h3>
+                  <p>
+                    <span>Downloads: </span> {this.props.stat.downloads.total}
+                  </p>
+                  <p>
+                    <span>Views: </span>
+                    {this.props.stat.views.total}
+                  </p>
+                  <p>
+                    <span>Likes: </span>
+                    {this.props.stat.likes.total}
+                  </p>
+                </div>
+              )}
+
               <div className="capture-info">
                 {!photo.exif ? null : (
                   <>
@@ -335,11 +367,18 @@ class DetailPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    accessTokenData: state.userState.accessTokenData,
+    userLikedPhotos: state.currentUserState.likedPhotos,
     photo: state.detailPhoto.photo,
-    location: state.locationState.location,
+    loca: state.locationState.location,
+    stat: state.detailPhoto.stat,
+    user: state.userState.userProfile,
+    localLikes: state.currentUserState.localLikes,
   };
 };
 
-export default connect(mapStateToProps, { fetchDetailPhotos, fetchLocation })(
-  withRouter(DetailPage)
-);
+export default connect(mapStateToProps, {
+  fetchDetailPhotos,
+  fetchLocation,
+  fetchStatistics,
+})(withRouter(DetailPage));

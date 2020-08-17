@@ -45,6 +45,10 @@ export const TOGGLE_SINGLE_PHOTO_FETCHING_STATE =
 export const SET_SEARCHED_PHOTO = "SET_SEARCHED_PHOTO";
 export const TOGGLE_SEARCHED_PHOTO_FETCHING_STATE =
   "TOGGLE_SEARCHED_PHOTO_FETCHING_STATE";
+//searched users
+export const SEARCH_USER = "SEARCH_USER";
+//searched collection
+export const SEARCH_COLLECTION = "SEARCHED_COLLECTION";
 
 //deleted public user's photo
 export const DEL_PUBLIC_PHOTO = "DEL_PUBLIC_PHOTO";
@@ -93,3 +97,22 @@ export const CREATE_A_NEW_COLLECTION = "CREATE_A_NEW_COLLECTION";
 
 //Edit Profile (first_name, last_name, bio)
 export const EDIT_PROFILE = "EDIT_PROFILE";
+
+//show create collection modal
+export const SHOW_CREATE_COLLECTION = "SHOW_CREATE_COLLECTION";
+
+//show please login modal
+export const LOGIN_MODAL = "LOGIN_MODAL";
+//show logout modal
+export const LOGOUT_MODAL = "LOGOUT_MODAL";
+
+export const SHOW_ADD_MODAL = "SHOW_ADD_MODAL";
+
+//delete old users
+export const DEL_USERS = "DEL_USERS";
+
+//delete old collection
+export const DEL_COLLECTION = "DEL_COLLECTION";
+
+//get image statistics
+export const GET_IMAGE_STATISTICS = "GET_IMAGE_STATISTICS";

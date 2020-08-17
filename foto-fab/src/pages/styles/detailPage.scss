@@ -1,18 +1,17 @@
 .detail-page {
+  padding-top: 70px;
+  background-image: linear-gradient(to left, #243949 0%, #517fa4 100%);
   .detail-page-section {
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      background: rgb(0,0,0);
-background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba(74,73,73,1) 63%, rgba(87,84,84,1) 79%, rgba(115,108,108,1) 90%, rgba(125,120,120,1) 94%, rgba(146,144,144,1) 100%, rgba(167,167,167,1) 100%);
       .user-info {
-        
-        margin-top: 55px;
         display: flex;
         align-items: center;
         box-sizing: border-box;
+
         .profile-pic {
           margin: 20px;
           height: 60px;
@@ -27,6 +26,7 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba
           }
         }
         .name-location {
+          color: #fff;
           display: flex;
           flex-direction: column;
           .name {
@@ -34,25 +34,28 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba
             margin-bottom: 10px;
             font-weight: 600;
             font-size: 18px;
-            //color: rgba(0, 0, 0, 0.815);
-            color:white;
+            color: rgba(0, 0, 0, 0.815);
+            color: #fff;
+
             &:hover {
               color: black;
+              color: #fff;
             }
           }
           .location {
             cursor: pointer;
-            //color: rgba(0, 0, 0, 0.609);
-            color: white;
+            color: rgba(0, 0, 0, 0.609);
+            color: #fff;
+
             &:hover {
               color: black;
+              color: #fff;
             }
           }
         }
       }
       .download {
-        margin-top:65px;
-        margin-right: 20px;
+        margin: 20px;
         button {
           font-family: "Montserrat", sans-serif;
           height: 40px;
@@ -71,6 +74,14 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba
           }
         }
       }
+      .container {
+        position: absolute;
+        ul {
+          button {
+            width: 120px;
+          }
+        }
+      }
     }
 
     .photo-section {
@@ -80,7 +91,7 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba
       overflow: hidden;
       box-sizing: border-box;
       padding: 20px;
-      background-color: rgba(0, 0, 0, 0.061);
+      background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
       img {
         width: auto;
         max-width: auto;
@@ -115,18 +126,43 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba
       width: 100%;
       box-sizing: border-box;
       padding: 10px 20px;
-
+      color: #fff;
+      h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
       p {
-        color: rgba(0, 0, 0, 0.746);
-        margin: 20px 0;
         font-weight: 500;
-        padding: 20px;
         font-size: 18px;
-        border-top: 1.5px solid rgba(46, 46, 46, 0.226);
+        // border-top: 1.5px solid rgba(46, 46, 46, 0.226);
         // border-bottom: 1px solid rgba(46, 46, 46, 0.226);
       }
     }
+    .image-statistics {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 20px;
+      color: #fff;
+      background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+
+      h3 {
+        color: rgba(0, 0, 0, 0.822);
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.835);
+      }
+      p {
+        color: rgba(0, 0, 0, 0.746);
+        font-size: 18px;
+        margin: 10px 0;
+        color: rgba(255, 255, 255, 0.794);
+      }
+      span {
+        color: #fff;
+        font-weight: 600;
+      }
+    }
     .capture-info {
+      background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
       width: 100%;
       box-sizing: border-box;
       padding: 20px;
@@ -134,11 +170,6 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba
       color: rgba(0, 0, 0, 0.609);
       p {
         padding: 5px 20px;
-      }
-      .line {
-        border-top: 1.5px solid rgba(46, 46, 46, 0.226);
-        padding: 0;
-        margin-bottom: 20px;
       }
 
       span {
@@ -151,7 +182,7 @@ background: linear-gradient(90deg, rgba(0,0,0,1) 22%, rgba(48,47,47,1) 47%, rgba
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.061);
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
     p {
       font-size: 20px;
       font-weight: 600;
