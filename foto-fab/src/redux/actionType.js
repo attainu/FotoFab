@@ -106,6 +106,8 @@ export const LOGIN_MODAL = "LOGIN_MODAL";
 //show logout modal
 export const LOGOUT_MODAL = "LOGOUT_MODAL";
 
+export const TIME_MODAL = "TIME_MODAL";
+
 export const SHOW_ADD_MODAL = "SHOW_ADD_MODAL";
 
 //delete old users

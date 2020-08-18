@@ -1,34 +1,35 @@
-.container
-{
+.container {
   display: flex;
   height: 100vh;
-.about-page {
-  width: 50%;
-  display: flex;
-  font-family: "Montserrat", sans-serif;
-}
-.ab
-{
-  width: 50%;
-    .ab-img
-    {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
+  .about-page {
+    width: 50%;
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+  }
+  .ab {
+    height: 100%;
+    width: 50vw;
+    .ab-img {
+      height: 100%;
+      width: 100%;
+      // object-fit: cover;
     }
-}
+  }
 }
 @media (max-width: 768px) {
-  .container
-  {
+  .container {
     flex-direction: column;
-  .about-page {
-    width: 100%;
-    flex-direction: column;
+    .about-page {
+      width: 100%;
+      flex-direction: column;
+    }
+    .ab {
+      width: 100vw;
+      box-sizing: border-box;
+      padding-bottom: 55px;
+    }
+    .ab .ab-img {
+      width: 100%;
+    }
   }
-  .ab
-  {
-    width:100%;
-  }
-}
 }

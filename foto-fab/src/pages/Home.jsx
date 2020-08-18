@@ -6,9 +6,9 @@ import PhotoCard from "../components/photoCard";
 import "../../src/components/styles/photoCard.scss";
 import Spinner from "../components/Spinner";
 import MobileNavigation from "../components/mobileNavigation";
-import Navbar from "../components/Navbar";
 import StickyBar from "../components/StickyBar";
 import { fetchCurrentUserProfile } from "../redux/actions/userAction";
+import { fetchCurrentUserCollections } from "../redux/actions/currentUserAction";
 
 class Home extends Component {
   state = {
@@ -41,6 +41,9 @@ class Home extends Component {
     console.log("window history", window.location.search);
     this.props.emptyImages();
     this.props.fetchImages(this.state.page_no);
+    if (this.props.user) {
+      this.props.fetchCurrentUserCollections(this.props.user.username);
+    }
     window.addEventListener("scroll", this.handleScroll);
   }
   componentWillUnmount() {
@@ -59,6 +62,9 @@ class Home extends Component {
       this.props.fetchCurrentUserProfile(
         this.props.accessTokenData.access_token
       );
+    }
+    if (this.props.user && !this.props.currentUserCollection) {
+      this.props.fetchCurrentUserCollections(this.props.user.username);
     }
   };
 
@@ -93,6 +99,7 @@ const mapStateToProps = (state) => {
     photos: state.photoState.photos,
     user: state.userState.userProfile,
     accessTokenData: state.userState.accessTokenData,
+    currentUserCollection: state.currentUserState.collections,
   };
 };
 
@@ -100,4 +107,5 @@ export default connect(mapStateToProps, {
   fetchImages,
   emptyImages,
   fetchCurrentUserProfile,
+  fetchCurrentUserCollections,
 })(Home);

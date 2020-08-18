@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import image from "../image/pic3.jpg";
 import "./styles/AboutPhoto.scss";
-import arrow from "../image/arrow.png";
 import { Link } from "react-router-dom";
 import logo from "../logo/whiteLogo.svg";
-import ab from "../image/ab.png";
+import ab from "../image/ab4.jpg";
 import StickyBar from "../components/StickyBar";
 import { Spring } from "react-spring/renderprops";
 class AboutPhoto extends Component {

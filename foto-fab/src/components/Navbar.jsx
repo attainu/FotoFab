@@ -112,15 +112,6 @@ class Navbar extends Component {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className="main-nav"
-                activeClassName="main-nav-active active"
-                to="/about"
-              >
-                About
-              </NavLink>
-            </li>
             {/* <li>
               <button
                 onClick={() => this.props.showCreateCollectionModal()}

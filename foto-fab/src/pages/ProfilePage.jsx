@@ -17,7 +17,7 @@ import {
   fetchCurrentUserLikedPhotos,
   fetchCurrentUserCollections,
 } from "../redux/actions/currentUserAction";
-import Axios from "axios";
+
 import CurrentUserProfile from "../components/currentUser/Profile";
 class ProfilePage extends Component {
   state = {
@@ -28,6 +28,17 @@ class ProfilePage extends Component {
     lat: "",
     lng: "",
   };
+
+  componentDidMount() {
+    if (this.props.user) {
+      this.props.fetchCurrentUserCollections(this.props.user.username);
+    }
+  }
+  componentDidUpdate() {
+    if (this.props.user && !this.props.currentUserCollection) {
+      this.props.fetchCurrentUserCollections(this.props.user.username);
+    }
+  }
 
   showModal = () => {
     this.props
@@ -66,6 +77,7 @@ const mapStateToProps = (storeState) => {
     accessTokenData: storeState.userState.accessTokenData,
     user: storeState.userState.userProfile,
     loc: storeState.locationState.location,
+    currentUserCollection: storeState.currentUserState.collections,
   };
 };
 

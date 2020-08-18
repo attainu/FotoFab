@@ -10,6 +10,7 @@ import {
   SHOW_CREATE_COLLECTION,
   SHOW_ADD_MODAL,
   LOGOUT_MODAL,
+  TIME_MODAL,
 } from "../actionType";
 import axios from "axios";
 import { key } from "../../config";
@@ -80,6 +81,11 @@ export const showAlertModal = () => {
 export const showLogoutModal = () => {
   return {
     type: LOGOUT_MODAL,
+  };
+};
+export const showTimeModal = () => {
+  return {
+    type: TIME_MODAL,
   };
 };
 

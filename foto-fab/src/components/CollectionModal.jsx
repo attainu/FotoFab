@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import "./styles/collectionForm.scss";
+import "./styles/collectionModal.scss";
 import { connect } from "react-redux";
 
 import {
   createANewCollection,
   addPhotoToACollection,
 } from "../redux/actions/userAction";
+import { showTimeModal } from "../redux/actions/currentUserAction";
 
 class collectionModal extends Component {
   state = {
@@ -34,18 +35,17 @@ class collectionModal extends Component {
       );
       this.setState({ createdCollection: true });
       this.props.handleDisplay();
-      alert("it may take longer to create new collection");
     }
   };
 
-  createNewCollection = () => {
-    this.setState({ createNew: !this.state.createNew });
-  };
+  // createNewCollection = () => {
+  //   this.setState({ createNew: !this.state.createNew });
+  // };
 
   handleAdd = (colId, id, access_token) => {
     this.props.addPhotoToACollection(colId, id, access_token);
     this.props.handleDisplay();
-    alert("it may take longer to add your photos to this collection");
+    this.props.showTimeModal();
   };
 
   // componentDidMount() {
@@ -62,20 +62,20 @@ class collectionModal extends Component {
   //     }
   //   }
   // }
-  componentDidUpdate() {
-    if (this.state.createdCollection) {
-      if (this.props.newCollection) {
-        this.handleAdd(
-          this.props.newCollection[0].id,
-          this.props.id,
-          this.props.accessTokenData.access_token
-        );
-        this.setState({ createdCollection: false });
-      } else {
-        alert("collection is created but unable to add photo");
-      }
-    }
-  }
+  // componentDidUpdate() {
+  //   if (this.state.createdCollection) {
+  //     if (this.props.newCollection) {
+  //       this.handleAdd(
+  //         this.props.newCollection[0].id,
+  //         this.props.id,
+  //         this.props.accessTokenData.access_token
+  //       );
+  //       this.setState({ createdCollection: false });
+  //     } else {
+  //       alert("collection is created but unable to add photo");
+  //     }
+  //   }
+  // }
 
   render() {
     return (
@@ -85,30 +85,30 @@ class collectionModal extends Component {
           display: `${this.props.display}`,
         }}
       >
-        {!this.state.createNew ? (
-          <>
-            <p>Add photo to Existing collections</p>
-            <ul>
-              {!this.props.collection ? (
-                <p>NO COLLECTIONS CREATED YET</p>
-              ) : (
-                this.props.collection.map((col) => (
-                  <li
-                    key={col.id}
-                    onClick={() =>
-                      this.handleAdd(
-                        col.id,
-                        this.props.id,
-                        this.props.accessTokenData.access_token
-                      )
-                    }
-                  >
-                    <button>{col.title}</button>
-                  </li>
-                ))
-              )}
-            </ul>
-            {/* <p className="or">OR</p>
+        {/* {!this.state.createNew ? ( */}
+        <div className="collection-form-main">
+          <p>Add photo to Existing collections</p>
+          <ul>
+            {!this.props.collection ? (
+              <p>NO COLLECTIONS CREATED YET</p>
+            ) : (
+              this.props.collection.map((col) => (
+                <li
+                  key={col.id}
+                  onClick={() =>
+                    this.handleAdd(
+                      col.id,
+                      this.props.id,
+                      this.props.accessTokenData.access_token
+                    )
+                  }
+                >
+                  <button>{col.title}</button>
+                </li>
+              ))
+            )}
+          </ul>
+          {/* <p className="or">OR</p>
             <p className="create">
               <button onClick={this.createNewCollection}>
                 create a new collection
@@ -119,32 +119,33 @@ class collectionModal extends Component {
               created collection will not contain any images at first. After
               creating collection you can add images to it. *
             </p> */}
-          </>
-        ) : (
-          <>
-            <form className="create-new-collection">
-              <p>Create New Collection</p>
-              <div>
-                <input
-                  type="text"
-                  name="content"
-                  value={this.state.content}
-                  onChange={this.handleChange}
-                />
-                <button onClick={this.handleSubmit}>CREATE</button>
-              </div>
-            </form>
-            <p className="or">OR</p>
-            <button className="add-in-old" onClick={this.createNewCollection}>
-              Add in Existing Collection
-            </button>
-          </>
-        )}
+          {/* </>
+        // ) : (
+        //   <>
+        //     <form className="create-new-collection">
+        //       <p>Create New Collection</p>
+        //       <div>
+        //         <input */}
+          {/* //           type="text"
+        //           name="content"
+        //           value={this.state.content}
+        //           onChange={this.handleChange}
+        //         />
+        //         <button onClick={this.handleSubmit}>CREATE</button>
+        //       </div>
+        //     </form> */}
+          {/* //     <p className="or">OR</p>
+        //     <button className="add-in-old" onClick={this.createNewCollection}>
+        //       Add in Existing Collection
+        //     </button>
+        //   </>
+        // )} */}
 
-        {/* )} */}
-        <button className="cancel" onClick={() => this.props.handleDisplay()}>
-          Cancel
-        </button>
+          {/* )} */}
+          <button className="cancel" onClick={() => this.props.handleDisplay()}>
+            Cancel
+          </button>
+        </div>
       </div>
     );
   }
@@ -161,4 +162,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   createANewCollection,
   addPhotoToACollection,
+  showTimeModal,
 })(collectionModal);

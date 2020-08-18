@@ -90,15 +90,12 @@ class PhotoCard extends Component {
         document.body.appendChild(link);
         link.click();
       })
-      .catch((err) =>
-        alert("Sorry! Photos Cannot be downloaded due to CORS error")
-      );
+      .catch((err) => alert("this picture cannot be downloaded"));
   };
 
   render() {
     const { photo } = this.props;
     return (
-      // <Link to={`/detailPage/${photo.id}`}>
       <div className="photo-card" onMouseOver={this.checkIfAlreadyLiked}>
         <img src={`${photo.urls.regular}`} alt="" />
         {this.state.display === "flex" ? (
@@ -139,7 +136,6 @@ class PhotoCard extends Component {
           </div>
         )}
       </div>
-      // </Link>
     );
   }
 }

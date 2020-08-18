@@ -21,7 +21,6 @@
     justify-content: center;
     box-sizing: border-box;
     padding: 20px;
-
     p {
       font-weight: 600;
     }
@@ -58,6 +57,27 @@
           background-color: rgb(131, 130, 130);
         }
       }
+    }
+  }
+}
+
+.alert-modal-container .alert-modal-main .ok-alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .alert-modal-container {
+    .alert-modal-main {
+      width: 300px;
+      height: auto;
     }
   }
 }

@@ -19,7 +19,7 @@ export const unsplashLogin = (code) => async (dispatch) => {
     console.log(data);
     dispatch({ type: UNSPLASH_LOGIN, payload: data });
   } catch (err) {
-    alert("login for enjoying more features");
+    console.log("login for enjoying more features");
   }
 };
 
@@ -38,7 +38,7 @@ export const fetchCurrentUserProfile = (accessToken) => async (dispatch) => {
     console.log(data);
     dispatch({ type: SET_USER_PROFILE, payload: data });
   } catch (err) {
-    alert("WELCOME");
+    console.log("WELCOME");
   } finally {
     dispatch({ type: TOGGLE_USER_PROFILE_GETTING_STATE });
   }
@@ -53,7 +53,7 @@ export const likeAPhoto = (id, accessToken) => async () => {
     console.log(data);
     // dispatch({ type: LIKE_A_PHOTO, payload: data });
   } catch (err) {
-    alert("something went wrong");
+    alert("Rate limit exceeded");
   }
 };
 //unlike a photo
@@ -65,7 +65,7 @@ export const unlikeAPhoto = (id, accessToken) => async () => {
     console.log(data);
     // dispatch({ type: LIKE_A_PHOTO, payload: data });
   } catch (err) {
-    alert("like went wrong");
+    alert("Rate limit exceeded");
   }
 };
 
@@ -104,7 +104,7 @@ export const addPhotoToACollection = (
     );
     console.log(data);
   } catch (err) {
-    alert("sorry photo cannot be added");
+    alert("rate limit exceeded");
   }
 };
 
@@ -118,6 +118,6 @@ export const editProfile = (first_name, last_name, bio, accessToken) => async (
     console.log(data);
     dispatch({ type: SET_USER_PROFILE, payload: data });
   } catch (err) {
-    alert("sorry photo cannot be added");
+    alert("rate limit exceeded");
   }
 };
