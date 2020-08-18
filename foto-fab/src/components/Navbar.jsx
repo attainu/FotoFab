@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink, Link, Redirect } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import "./styles/navbar.scss";
 import ViewProfile from "./ViewProfile";
@@ -23,16 +23,16 @@ class Navbar extends Component {
     gotToken: false,
   };
 
-  fetchUserLikedPhotos = async (username) => {
-    try {
-      const { data } = await axios.get(
-        `https://api.unsplash.com/users/${username}/likes/?client_id=${key.ACCESS_KEY}`
-      );
-      console.log(data);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
+  // fetchUserLikedPhotos = async (username) => {
+  //   try {
+  //     const { data } = await axios.get(
+  //       `https://api.unsplash.com/users/${username}/likes/?client_id=${key.ACCESS_KEY}`
+  //     );
+  //     console.log(data);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
 
   async componentDidMount() {
     console.log(this.props.location.search);
@@ -42,9 +42,9 @@ class Navbar extends Component {
     if (this.props.accessTokenData === null) {
       this.props.unsplashLogin(query);
     }
-    if (this.props.user) {
-      this.fetchUserLikedPhotos(this.props.user.username);
-    }
+    // if (this.props.user) {
+    //   this.fetchUserLikedPhotos(this.props.user.username);
+    // }
   }
 
   componentDidUpdate() {
@@ -109,17 +109,19 @@ class Navbar extends Component {
                 exact
                 to="/"
               >
+                {/* <button className="home-button">  */}
                 Home
+                {/* </button> */}
               </NavLink>
             </li>
-            {/* <li>
+            <li>
               <button
                 onClick={() => this.props.showCreateCollectionModal()}
-                className="button"
+                className="create-collection-button"
               >
-                Create collection
+                Create Collection
               </button>
-            </li> */}
+            </li>
             <li>
               {this.props.user ? (
                 <ViewProfile

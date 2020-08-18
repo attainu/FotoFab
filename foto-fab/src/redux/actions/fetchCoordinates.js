@@ -10,7 +10,7 @@ export const fetchLocation = (location) => async (dispatch) => {
     dispatch({ type: FETCH_LOCATION_COORDINATES, payload: null });
     dispatch({ type: TOGGLE_COORDINATE_FETCHING_STATE });
     const { data } = await axios.get(
-      `http://www.mapquestapi.com/geocoding/v1/address?key=G3Sbuwj4Mgptl0S0KO2beiAvwa5fbDlA&location=${location}`
+      `https://www.mapquestapi.com/geocoding/v1/address?key=G3Sbuwj4Mgptl0S0KO2beiAvwa5fbDlA&location=${location}`
     );
     console.log(data.results[0].locations[0].displayLatLng);
     dispatch({

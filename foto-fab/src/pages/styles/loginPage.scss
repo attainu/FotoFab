@@ -2,7 +2,15 @@
 .login-page {
   overflow: hidden;
   font-family: "Montserrat", sans-serif;
-  background-image: url("../../image/bgLogin.jpg");
+  // background-image: url("../../image/bgLogin.jpg");
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  background-image: linear-gradient(
+    -225deg,
+    #473b7b 0%,
+    #3584a7 51%,
+    #30d2be 100%
+  );
+  // background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
   //background-size: contain;
   background-repeat: no-repeat;
   //height: 100vh;
@@ -58,12 +66,12 @@
         z-index: 3;
         .girl {
           position: absolute;
-        //width: 10%;
-        z-index: 3;
+          //width: 10%;
+          z-index: 3;
           margin-top: -109px;
           margin-left: 280px;
           height: 550px;
-          width:392px;
+          width: 392px;
         }
       }
       .left {
@@ -83,20 +91,24 @@
             // position:absolute;
             // z-index: 5;
           }
-          
         }
         .time {
-          color: #00584c;
+          // color: #00584c;
+          color: #0f5d64;
           .est {
             font-size: 18px;
+            font-weight: 500;
             padding-right: 15px;
+            text-shadow: 1px 1px 1px #000;
           }
           .date {
             font-size: 36px;
             padding-right: 10px;
+            text-shadow: 1px 1px 1px #000;
           }
           .month {
             font-size: 22px;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.692);
           }
         }
       }
@@ -109,7 +121,7 @@
         h1 {
           font-family: "Montserrat", sans-serif;
           margin-top: -100px;
-          color: #167c68;
+          color: #0f5d64;
           text-shadow: 2px 2px #ffffff;
           padding-bottom: 50px;
         }
@@ -124,9 +136,12 @@
           height: 48px;
           cursor: pointer;
           background-position: 15px;
-          background-color: #005a49;
+          background-color: #157086;
+          // background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
           color: white;
           border: none;
+          font-size: 14px;
+          font-weight: 500;
           //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
           border-radius: 40px;
           &:hover {
@@ -137,7 +152,6 @@
               0px 4px 4px rgba(0, 0, 0, 0.25);
           }
         }
-        
       }
     }
   }
@@ -176,7 +190,7 @@
             }
           }
           .time {
-            color: #00584c;
+            color: #0f5d64;
             .est {
               font-size: 10px;
               padding-right: 8px;
@@ -221,7 +235,7 @@
             }
           }
           .time {
-            color: #00584c;
+            color: #0f5d64;
             .est {
               font-size: 10px;
               padding-right: 8px;
@@ -236,14 +250,17 @@
           }
         }
         .right {
+          display: flex;
+          width: 100%;
           position: absolute;
           z-index: 5;
           margin-top: 250px;
           h1 {
           }
 
-          .button {
-          }
+          // .button {
+          //   padding: 0 10px;
+          // }
         }
       }
     }
@@ -273,7 +290,7 @@
             }
           }
           .time {
-            color: #00584c;
+            color: #0f5d64;
             .est {
               font-size: 10px;
               padding-right: 8px;
@@ -325,7 +342,7 @@
             }
           }
           .time {
-            color: #00584c;
+            color: #0f5d64;
             .est {
               font-size: 10px;
               padding-right: 8px;
@@ -379,7 +396,7 @@
             }
           }
           .time {
-            color: #00584c;
+            color: #0f5d64;
             .est {
               font-size: 10px;
               padding-right: 8px;
@@ -406,10 +423,10 @@
             background-image: none;
             background-size: 5000px 50000px;
             background-repeat: no-repeat;
-            width: 150px;
+            width: 200px;
             height: 35px;
             //background-position: 15px;
-            background-color: #005a49;
+            background-color: #0f5d64;
             color: white;
             border: none;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),

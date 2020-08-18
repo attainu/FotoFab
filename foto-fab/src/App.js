@@ -8,7 +8,6 @@ import PublicUserProfilePage from "./pages/publicUserProfilePage";
 import AboutPage from "./pages/AboutPage";
 import CollectionPage from "./pages/CollectionPhotos";
 import DetailPage from "./pages/DetailPage";
-import SignUpPage from "./pages/SignUpPage";
 import EditProfile from "./pages/EditProfile";
 import ContactUs from "./pages/ContactUsPage";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -16,15 +15,16 @@ import { connect } from "react-redux";
 import LoginPage from "./pages/LoginPage";
 import AlertModal from "./components/AlertModal";
 import SearchedUsers from "./components/SearchedUsers";
+import CreateCollection from "./components/CreateCollection";
 
 function App({ user }) {
   return (
     <BrowserRouter>
       <Navbar />
       <AlertModal />
+      <CreateCollection />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/signUp" component={SignUpPage} />
         <Route path="/profile/:username" component={ProfilePage} />
         <Route path="/search/:searchQuery" component={SearchPage} />
         <Route exact path="/about" component={AboutPage} />

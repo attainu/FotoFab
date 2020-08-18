@@ -4,6 +4,7 @@ import {
   showAlertModal,
   showLogoutModal,
   showTimeModal,
+  showCreationTimeModal,
 } from "../redux/actions/currentUserAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -64,11 +65,28 @@ class AlertModal extends Component {
           <div className="alert-modal-container">
             <div className="alert-modal-main">
               <div className="ok-alert">
-                <p>It'll take few minutes to add picture!</p>
+                <p>It takes two minutes to add picture to Collection!</p>
                 <div className="buttons">
                   <button
                     className="cancel"
                     onClick={() => this.props.showTimeModal()}
+                  >
+                    OK
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {this.props.creationTimeModal && (
+          <div className="alert-modal-container">
+            <div className="alert-modal-main">
+              <div className="ok-alert">
+                <p>It takes 12 minutes to create Collection!</p>
+                <div className="buttons">
+                  <button
+                    className="cancel"
+                    onClick={() => this.props.showCreationTimeModal()}
                   >
                     OK
                   </button>
@@ -88,6 +106,7 @@ const mapStateToProps = (state) => {
     accessTokenData: state.userState.accessTokenData,
     user: state.userState.userProfile,
     timeModal: state.currentUserState.timeModal,
+    creationTimeModal: state.currentUserState.creationTimeModal,
   };
 };
 export default connect(mapStateToProps, {
@@ -95,4 +114,5 @@ export default connect(mapStateToProps, {
   showLogoutModal,
   logOutUser,
   showTimeModal,
+  showCreationTimeModal,
 })(withRouter(AlertModal));

@@ -19,11 +19,15 @@ class StickyBar extends Component {
     this.props.history.push(`/contact`);
   };
 
+  handleHomePage = () => {
+    this.props.history.push(`/`);
+  };
+
   render() {
     return (
       <div className="sticky-container">
         <ul className="sticky">
-          <li>
+          <li onClick={this.handleHomePage}>
             {" "}
             <img width="32" height="32" title="" alt="" src={ff} />
             <p>Foto Fab</p>

@@ -110,6 +110,8 @@ export const TIME_MODAL = "TIME_MODAL";
 
 export const SHOW_ADD_MODAL = "SHOW_ADD_MODAL";
 
+export const SHOW_CREATION_TIME_MODAL = "SHOW_CREATION_TIME_MODAL";
+
 //delete old users
 export const DEL_USERS = "DEL_USERS";
 

@@ -11,6 +11,7 @@ import {
   SHOW_ADD_MODAL,
   LOGOUT_MODAL,
   TIME_MODAL,
+  SHOW_CREATION_TIME_MODAL,
 } from "../actionType";
 import axios from "axios";
 import { key } from "../../config";
@@ -93,5 +94,11 @@ export const showTimeModal = () => {
 export const showAddToCollectionModal = () => {
   return {
     type: SHOW_ADD_MODAL,
+  };
+};
+
+export const showCreationTimeModal = () => {
+  return {
+    type: SHOW_CREATION_TIME_MODAL,
   };
 };
