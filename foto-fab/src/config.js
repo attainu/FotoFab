@@ -1,6 +1,6 @@
 export const key = {
-  ACCESS_KEY: "AjpwwYKydi1dZXv_5HEmAARHjC5kaj_4rDzVs1rhsZM",
-  SECRET_KEY: "B30_ee5RRX00ilVo0uP7871yZkthAza8WwatDvDhhBY",
+  ACCESS_KEY: "bxVBcSKbVrcezdSKMdwn8SZmZ29H-p5AYcCwLo69llI",
+  SECRET_KEY: "y3_AmDNlFOnVsYY-IjoM9DS5DsaUmpguGbM4-kD-I9k",
   REDIRECT_URI: "http://localhost:3000/",
 };
 

@@ -3,19 +3,19 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "@statickit/react": "^2.1.1",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.2.1",
         "axios": "^0.19.2",
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.3",
         "font-awesome": "^4.7.0",
         "google-map-react": "^2.0.8",
         "node-sass": "^4.14.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "react-facebook-login": "^4.1.1",
         "react-google-login": "^5.1.21",
-        "react-mail-form": "^2.1.0",
+        "react-modal": "^3.11.2",
         "react-redux": "^7.2.1",
         "react-router-dom": "^5.2.0",
         "react-scripts": "3.4.1",
@@ -28,8 +28,14 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
+    },
+    "devDependencies": {
+        "axios-mock-adapter": "^1.9.0",
+        "enzyme": "^3.11.0",
+        "prop-types": "^15.5.10",
+        "react-test-renderer": "^15.6.1"
     },
     "eslintConfig": {
         "extends": "react-app"
