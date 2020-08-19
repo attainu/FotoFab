@@ -2,7 +2,7 @@
 .login-page {
   overflow: hidden;
   font-family: "Montserrat", sans-serif;
-  background-image: url("../../image/bgLogin.jpg");
+  background-image: url("https://images.unsplash.com/photo-1511933801659-156d99ebea3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=100");
   background-repeat: no-repeat;
   background-size: 1520px 100vh;
   height: 100vh;
@@ -83,21 +83,25 @@
 }
 
 .login-page .bottom .light-green-bg .left .time {
-  color: #00584c;
+  color: #0f5d64;
 }
 
 .login-page .bottom .light-green-bg .left .time .est {
   font-size: 18px;
+  font-weight: 500;
   padding-right: 15px;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .login-page .bottom .light-green-bg .left .time .date {
   font-size: 36px;
   padding-right: 10px;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .login-page .bottom .light-green-bg .left .time .month {
   font-size: 22px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.692);
 }
 
 .login-page .bottom .light-green-bg .right {
@@ -110,7 +114,7 @@
 .login-page .bottom .light-green-bg .right h1 {
   font-family: "Montserrat", sans-serif;
   margin-top: -100px;
-  color: #167c68;
+  color: #0f5d64;
   text-shadow: 2px 2px #ffffff;
   padding-bottom: 50px;
 }
@@ -125,9 +129,11 @@
   height: 48px;
   cursor: pointer;
   background-position: 15px;
-  background-color: #005a49;
+  background-color: #157086;
   color: white;
   border: none;
+  font-size: 14px;
+  font-weight: 500;
   border-radius: 40px;
 }
 
@@ -166,7 +172,7 @@
     width: 200px;
   }
   .login-page .bottom .light-green-bg .left .time {
-    color: #00584c;
+    color: #0f5d64;
   }
   .login-page .bottom .light-green-bg .left .time .est {
     font-size: 10px;
@@ -206,7 +212,7 @@
     width: 200px;
   }
   .login-page .bottom .light-green-bg .left .time {
-    color: #00584c;
+    color: #0f5d64;
   }
   .login-page .bottom .light-green-bg .left .time .est {
     font-size: 10px;
@@ -220,6 +226,8 @@
     font-size: 14px;
   }
   .login-page .bottom .light-green-bg .right {
+    display: flex;
+    width: 100%;
     position: absolute;
     z-index: 5;
     margin-top: 250px;
@@ -247,7 +255,7 @@
     width: 200px;
   }
   .login-page .bottom .light-green-bg .left .time {
-    color: #00584c;
+    color: #0f5d64;
   }
   .login-page .bottom .light-green-bg .left .time .est {
     font-size: 10px;
@@ -288,7 +296,7 @@
     width: 200px;
   }
   .login-page .bottom .light-green-bg .left .time {
-    color: #00584c;
+    color: #0f5d64;
   }
   .login-page .bottom .light-green-bg .left .time .est {
     font-size: 10px;
@@ -333,7 +341,7 @@
     width: 200px;
   }
   .login-page .bottom .light-green-bg .left .time {
-    color: #00584c;
+    color: #0f5d64;
   }
   .login-page .bottom .light-green-bg .left .time .est {
     font-size: 10px;
@@ -357,9 +365,9 @@
     background-image: none;
     background-size: 5000px 50000px;
     background-repeat: no-repeat;
-    width: 150px;
+    width: 200px;
     height: 35px;
-    background-color: #005a49;
+    background-color: #0f5d64;
     color: white;
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
