@@ -54,7 +54,10 @@ class ProfilePage extends Component {
   render() {
     const { user, location } = this.props;
     return (
-      <div style={{ width: "100%", paddingTop: "100px" }}>
+      <div
+        style={{ width: "100%", paddingTop: "100px" }}
+        className="profile-page"
+      >
         {!user ? (
           <Redirect to="/" />
         ) : (

@@ -75,6 +75,7 @@ const mapStateToProps = (state) => {
     accessTokenData: state.userState.accessTokenData,
     newCollection: state.userState.newCollection,
     showModal: state.currentUserState.showModal,
+    user: state.userState.userProfile,
   };
 };
 

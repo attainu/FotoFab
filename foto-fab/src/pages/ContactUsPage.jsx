@@ -64,7 +64,7 @@ const ContactUsPage = () => {
       <MobileNavigation />
       <div className="left"></div>
       <div className="contact__wrap">
-        <h1>Contact Form</h1>
+        <h1>Contact Us</h1>
         <form onSubmit={(e) => sendMessage(e)} className="contact__form">
           <input
             value={inputs.name}

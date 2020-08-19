@@ -12,7 +12,7 @@
     background-image: url("../img/space.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 50vw;
+    background-size: 50vw 100vh;
     padding-top: 100px;
     display: flex;
     flex-direction: column;
@@ -74,6 +74,7 @@
     }
   }
 }
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;

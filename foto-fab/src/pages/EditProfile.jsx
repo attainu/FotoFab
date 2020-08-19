@@ -5,7 +5,7 @@ import { editProfile } from "../redux/actions/userAction";
 import "./styles/editProfile.scss";
 import image from "./img/profile_data.svg";
 import MobileNavigation from "../components/mobileNavigation";
-
+import { showEditAlert } from "../redux/actions/currentUserAction";
 class EditProfile extends Component {
   state = {
     firstName: this.props.user.first_name,
@@ -42,11 +42,10 @@ class EditProfile extends Component {
         bioData,
         this.props.accessToken.access_token
       );
-    } 
-    else {
-      alert("please fill names");
+      this.props.history.push(`/profile/${this.props.user.username}`);
+    } else {
+      this.props.showEditAlert();
     }
-    this.props.history.push(`/profile/${this.props.user.username}`);
   };
 
   handleCancel = (e) => {
@@ -71,6 +70,7 @@ class EditProfile extends Component {
                   <input
                     type="text"
                     name="firstName"
+                    required
                     value={this.state.firstName}
                     onChange={this.handleFirstName}
                   />
@@ -80,6 +80,7 @@ class EditProfile extends Component {
                   <input
                     type="text"
                     name="lastName"
+                    required
                     value={this.state.lastName}
                     onChange={this.handleLastName}
                   />
@@ -95,7 +96,9 @@ class EditProfile extends Component {
                   ></textarea>
                 </label>
                 <div className="buttons">
-                  <button onClick={this.handleSave}>Save</button>
+                  <button type="submit" onClick={this.handleSave}>
+                    Save
+                  </button>
                   <button className="cancel" onClick={this.handleCancel}>
                     Cancel
                   </button>
@@ -117,4 +120,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { editProfile })(EditProfile);
+export default connect(mapStateToProps, { editProfile, showEditAlert })(
+  EditProfile
+);

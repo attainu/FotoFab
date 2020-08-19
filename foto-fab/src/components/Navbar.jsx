@@ -115,12 +115,14 @@ class Navbar extends Component {
               </NavLink>
             </li>
             <li>
-              <button
-                onClick={() => this.props.showCreateCollectionModal()}
-                className="create-collection-button"
-              >
-                Create Collection
-              </button>
+              {this.props.user && (
+                <button
+                  onClick={() => this.props.showCreateCollectionModal()}
+                  className="create-collection-button"
+                >
+                  Create Collection
+                </button>
+              )}
             </li>
             <li>
               {this.props.user ? (

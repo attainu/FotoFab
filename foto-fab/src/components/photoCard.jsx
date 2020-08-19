@@ -114,9 +114,14 @@ class PhotoCard extends Component {
                   <i className="fa fa-heart-o" aria-hidden="true"></i>
                 )}
               </button>
-              <button onClick={this.handleDisplay}>
-                <i className="fa fa-plus"></i>
-              </button>
+              <div className="tooltip-container">
+                <button onClick={this.handleDisplay}>
+                  <i className="fa fa-plus"></i>
+                  <span className="tooltip-content">
+                    Add to <br /> Collection
+                  </span>
+                </button>
+              </div>
             </div>
             <div className="view-image">
               <button onClick={this.handlePhoto}>View Image</button>

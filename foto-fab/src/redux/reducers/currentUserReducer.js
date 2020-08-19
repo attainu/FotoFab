@@ -13,6 +13,7 @@ import {
   LOGOUT_MODAL,
   TIME_MODAL,
   SHOW_CREATION_TIME_MODAL,
+  SHOW_EDIT_ALERT,
 } from "../actionType";
 
 const initialState = {
@@ -28,6 +29,7 @@ const initialState = {
   addModal: false,
   timeModal: false,
   creationTimeModal: false,
+  editAlert: false,
 };
 
 const currentUserReducer = (state = initialState, action) => {
@@ -107,6 +109,11 @@ const currentUserReducer = (state = initialState, action) => {
       return {
         ...state,
         creationTimeModal: !state.creationTimeModal,
+      };
+    case SHOW_EDIT_ALERT:
+      return {
+        ...state,
+        editAlert: !state.editAlert,
       };
     default: {
       return state;
